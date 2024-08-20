@@ -12,19 +12,21 @@ import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
+import RenderTag from "../RenderTag";
 
 interface UserParams {
   user?: {
     name?: string;
     username?: string;
   };
+  popularTags?: any[] | undefined;
 }
 
 const NavContent = () => {
   const pathname = usePathname();
 
   return (
-    <section className="light-border mt-5 flex h-full flex-col gap-2 border-t pt-4">
+    <section className="light-border mt-5 flex flex-col gap-2 border-t pt-4">
       <h2 className="text-dark300_light900 base-bold">Discover</h2>
       {sidebarLinks.map((item) => {
         // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
@@ -63,7 +65,10 @@ const NavContent = () => {
   );
 };
 
-const MobileNav = ({ user }: UserParams) => {
+const MobileNav = ({ user, popularTags }: UserParams) => {
+  const tags =
+    popularTags?.length > 10 ? popularTags?.slice(0, 10) : popularTags || [];
+
   return (
     <Sheet>
       <SheetTrigger asChild className="min-w-9">
@@ -100,7 +105,7 @@ const MobileNav = ({ user }: UserParams) => {
               appearance={{
                 elements: {
                   // sets height and width for user profile button
-                  avatarBox: "size-16",
+                  avatarBox: "size-14",
                 },
                 variables: {
                   colorPrimary: "#ff7000",
@@ -109,32 +114,51 @@ const MobileNav = ({ user }: UserParams) => {
             />
 
             <div className="text-dark100_light900 flex flex-col">
-              <p className="base-bold">{user.name}</p>
-              <p className="dark:text-zinc-600">@{user.username}</p>
+              <p className="base-bold">{user?.name}</p>
+              <p className="dark:text-zinc-600">@{user?.username}</p>
             </div>
           </div>
         </SignedIn>
-        <div className="flex h-full flex-col justify-between pb-10 ">
+        <div className="flex h-full flex-col justify-start gap-8 pb-10 ">
           <SheetClose asChild className="">
             {/* nav links */}
             <NavContent />
           </SheetClose>
+
+          <SignedIn>
+            <div className=" light-border border-t pt-5">
+              <h2 className="text-dark300_light900 base-bold">Popular Tags</h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {tags?.map((tag) => (
+                  <SheetClose key={tag._id} asChild>
+                    <RenderTag
+                      _id={tag._id}
+                      name={tag.name}
+                      totalQuestions={tag.numberOfQuestions}
+                    />
+                  </SheetClose>
+                ))}
+              </div>
+            </div>
+          </SignedIn>
 
           <SignedOut>
             {/* if user is not logged in the content inside this will show */}
             <div className="flex flex-col gap-3">
               <SheetClose asChild>
                 <Link href="/sign-in">
-                  <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
-                    <span className="primary-text-gradient">LogIn</span>
+                  <Button className="small-medium primary-gradient min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
+                    <span className="text-light-1 dark:text-dark-1">LogIn</span>
                   </Button>
                 </Link>
               </SheetClose>
 
               <SheetClose asChild>
                 <Link href="/sign-up">
-                  <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    SignUp
+                  <Button className="small-medium light-border-2 primary-gradient  min-h-[41px] w-full rounded-lg px-4 py-3 text-light-1 shadow-none dark:text-dark-1">
+                    <span className="text-light-1 dark:text-dark-1">
+                      SignUp
+                    </span>
                   </Button>
                 </Link>
               </SheetClose>

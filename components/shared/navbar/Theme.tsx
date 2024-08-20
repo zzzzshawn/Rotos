@@ -22,16 +22,16 @@ const Theme = () => {
           {mode === "light" ? (
             <Image
               src="/assets/icons/sun.svg"
-              width={20}
-              height={20}
+              width={24}
+              height={24}
               alt="sun"
               className="dark:invert"
             />
           ) : (
             <Image
               src="/assets/icons/moon.svg"
-              width={20}
-              height={20}
+              width={24}
+              height={24}
               alt="moon"
               className="dark:invert"
             />
