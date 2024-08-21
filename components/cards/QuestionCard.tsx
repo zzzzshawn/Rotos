@@ -74,13 +74,13 @@ const QuestionCard = (props: QuestionProps) => {
         </SignedIn>
       </div>
 
-      <div className="flex-between mt-6 w-full flex-wrap gap-3 ">
-        <div className="flex flex-wrap gap-2">
+      <div className="flex-between mt-6 w-full">
+        <div className="flex w-2/3  flex-wrap gap-2">
           {tags.map((tag) => (
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
         </div>
-        <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
+        <div className="flex w-max  items-center gap-3 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"

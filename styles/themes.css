@@ -101,7 +101,7 @@
   }
 
   .light-border {
-    @apply border-light-2 dark:border-dark-4;
+    @apply border-light-2 dark:border-dark-4/40;
   }
 
   .light-border-2 {
