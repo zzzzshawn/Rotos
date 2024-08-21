@@ -36,9 +36,9 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
   }
 
   return (
-    <div className="sm:px-12 px-6 mt-8">
+    <div className="mt-8 px-6 sm:px-12">
       <div className="flex-start w-full flex-col">
-        <div className="mb-3 flex w-full justify-between flex-row items-center">
+        <div className="mb-3 flex w-full flex-row items-center justify-between">
           <Link
             href={`/profile/${result.author.clerkId}`}
             className="flex items-center justify-start gap-1"
@@ -67,7 +67,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
         </h2>
       </div>
 
-      <div className="sm:mb-5 mb-2 mt-5 flex flex-wrap gap-4">
+      <div className="mb-2 mt-5 flex flex-wrap gap-4 sm:mb-5">
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="answers"
@@ -85,7 +85,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
       </div>
 
       <ParseHTML data={result.content} />
-      <div className="flex-between w-full border-b pb-3 light-border-2">
+      <div className="flex-between light-border-2 w-full border-b pb-3">
         <div className="flex w-2/3  flex-wrap gap-2">
           {result.tags.map((tag: any) => (
             <RenderTag
@@ -129,7 +129,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
       ) : (
         <SignedOut>
           <Link href="/sign-in">
-            <div className="w-full mt-3">
+            <div className="mt-3 w-full">
               <Button className="primary-gradient text-light900_dark100 mx-auto ">
                 Sign in to contribute
               </Button>

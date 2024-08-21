@@ -25,9 +25,9 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
     });
   return (
     <div className="w-full">
-      <div className="text-dark100_light900 mt-1 flex w-full flex-col gap-1 px-10 pb-2 pt-4">
-        <h1 className="h2-bold">{user.name}</h1>
-        <p className="body-medium">Stats - {reputation}</p>
+      <div className="text-dark100_light900 mt-1 flex w-full flex-col gap-0.5 px-12 pb-2 pt-4">
+        <h1 className="text-xl ">{user.name}</h1>
+        <p className="text-variant">Stats - {reputation}</p>
       </div>
       <div className="relative h-[200px]  w-full bg-dark-4/10 dark:bg-dark-3">
         <div className="absolute bottom-[-30%] left-5">
@@ -62,7 +62,7 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               href="/profile/edit"
               className="absolute bottom-[-28%] right-6 "
             >
-              <Button className="paragraph-medium light-border-2 text-dark300_light900 min-h-[46px] rounded-full border px-6 py-3">
+              <Button className="paragraph-medium light-border-2 text-dark300_light900 min-h-[46px]  rounded-full border px-6 py-3">
                 Edit profile
               </Button>
             </Link>

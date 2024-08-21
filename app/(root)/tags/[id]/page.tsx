@@ -5,19 +5,20 @@ import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { getQuestionsByTagId } from "@/lib/actions/tag.actions";
 import { URLProps } from "@/types";
 
-
 const TagDetails = async ({ params, searchParams }: URLProps) => {
   const { tagTitle, questions, isNext } = await getQuestionsByTagId({
     tagId: params.id,
     page: searchParams?.page ? +searchParams.page : 1,
-    searchQuery: searchParams?.q
+    searchQuery: searchParams?.q,
   });
 
   return (
-    <>
-      <h1 className="h1-bold text-dark100_light900">{tagTitle}</h1>
+    <div className="mt-10 px-6 sm:px-12">
+      <h1 className="h1-bold text-dark100_light900 light-border-2 border-b">
+        {tagTitle}
+      </h1>
 
-      <div className="mt-11 w-full">
+      {/* <div className="mt-11 w-full">
         <LocalSearchbar
           route={`/tags/${params.id}`}
           iconPosition="left"
@@ -25,10 +26,10 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
           placeholder="Search Tag questions"
           otherClasses="flex-1"
         />
-      </div>
+      </div> */}
 
       {/* Card section */}
-      <div className="mt-10 flex flex-col gap-6">
+      <div className="mt-5 flex flex-col gap-6">
         {questions.length > 0 ? (
           questions?.map((question: any) => (
             <QuestionCard
@@ -54,12 +55,12 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
       </div>
 
       <div className="mt-10">
-        <Pagination 
+        <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={isNext}
         />
       </div>
-    </>
+    </div>
   );
 };
 export default TagDetails;

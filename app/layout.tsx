@@ -4,7 +4,6 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import "../styles/prism.css";
 import React from "react";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Themeprovider } from "@/context/ThemeProvider";
 
 const inter = Inter({
@@ -35,22 +34,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} background-light850_dark100 `}
       >
-        <ClerkProvider
-          appearance={{
-            elements: {
-              formButtonPrimary: "primary-gradient",
-              footerActionLink: "primary-text-gradient hover:text-primary-500",
-            },
-          }}
-        >
           {/* imported clerk for authentication */}
           <Themeprovider>{children}</Themeprovider>
-        </ClerkProvider>
       </body>
     </html>
   );

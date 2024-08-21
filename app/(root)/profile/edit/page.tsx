@@ -4,10 +4,9 @@ import { ParamsProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import { Metadata } from "next";
 
-
 export const metadata: Metadata = {
-  title: 'Edit profile',
-  description: 'Edit profile page of Dev Overflow'
+  title: "Edit profile",
+  description: "Edit profile page of Dev Overflow",
 };
 
 const ProfileEdit = async ({ params }: ParamsProps) => {
@@ -17,12 +16,12 @@ const ProfileEdit = async ({ params }: ParamsProps) => {
   const mongoUser = await getUserById({ userId });
 
   return (
-    <>
+    <div className="ppx-6 mt-10 sm:px-24">
       <h1 className="h1-bold text-dark100_light900">Edit Profile</h1>
       <div className="mt-9">
         <Profile clerkId={userId} user={JSON.stringify(mongoUser)} />
       </div>
-    </>
+    </div>
   );
 };
 export default ProfileEdit;

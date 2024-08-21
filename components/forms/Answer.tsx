@@ -28,7 +28,6 @@ interface Props {
 const Answer = ({ question, questionId, authorId }: Props) => {
   const pathname = usePathname();
   const editorRef = useRef(null);
-  const { mode } = useTheme();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmittingAI, setIsSubmittingAI] = useState(false);
 
@@ -104,10 +103,10 @@ const Answer = ({ question, questionId, authorId }: Props) => {
     <div className="">
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
         <h4 className="paragraph-semibold text-dark400_light800">
-          Write your answer here
+          Your answer
         </h4>
         <Button
-          className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500 "
+          className=" text-light900_dark100 primary-gradient gap-1.5 rounded-md px-4 py-2.5 "
           onClick={generateAiAnswer}
         >
           {isSubmittingAI ? (
@@ -166,8 +165,6 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                         "media",
                         "table",
                         "code",
-                        "help",
-                        "wordcount",
                       ],
                       toolbar:
                         "undo redo | blocks | " +
@@ -175,8 +172,8 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                         "alignright alignjustify | bullist numlist | ",
                       content_style:
                         "body { font-family:Inter; font-size:16px }",
-                      skin: mode === "dark" ? "oxide-dark" : "oxide",
-                      content_css: mode === "dark" ? "dark" : "light",
+                      skin: "oxide",
+                      content_css: "light",
                     }}
                   />
                 </FormControl>
@@ -188,7 +185,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="primary-gradient w-fit text-white"
+              className="text-light900_dark100 primary-gradient w-fit"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Submitting..." : "Submit"}

@@ -31,15 +31,15 @@ const AllAnswers = async ({
   });
 
   return (
-    <div className="mt-11">
-      <div className="flex items-center justify-between">
-        <h3 className="primary-text-gradient ">{totalAnswers} Answers</h3>
-        <Filter filters={AnswerFilters} />
+    <div className="mt-2">
+      <div className={result.answers.length > 0 ? "flex items-center justify-start gap-3":"hidden"}>
+        <h3 className="text-dark100_light900">Answers</h3>
+        <Filter filters={AnswerFilters} containerClasses="border rounded-md light-border" />
       </div>
 
       <div className="">
         {result.answers.map((answer) => (
-          <article key={answer._id} className="light-border border-b py-10">
+          <div key={answer._id} className="py-5">
               <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
                 <Link
                   href={`/profile/${answer.author.clerkId}`}
@@ -76,11 +76,11 @@ const AllAnswers = async ({
                   />
                 </div>
               </div>
-            <ParseHTML data={answer.content} />
-          </article>
+            <ParseHTML data={answer.content} classname={"border-b light-border-2"} />
+          </div>
         ))}
       </div>
-      <div className="mt-10 w-full">
+      <div className="mt-5 w-full">
         <Pagination
           pageNumber={page ? +page : 1}
           isNext={result.isNext}

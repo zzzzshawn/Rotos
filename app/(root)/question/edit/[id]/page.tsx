@@ -24,7 +24,7 @@ const EditQuestion = async ({ params }: ParamsProps) => {
   });
 
   return (
-    <>
+    <div className='sm:px-12 px-6 mt-10'>
       <h1 className="h1-bold text-dark100_light900">Edit Question</h1>
       <div className="mt-9">
         <Question
@@ -33,7 +33,7 @@ const EditQuestion = async ({ params }: ParamsProps) => {
           questionData={JSON.stringify(question)}
         />
       </div>
-    </>
+    </div>
   );
 };
 export default EditQuestion;

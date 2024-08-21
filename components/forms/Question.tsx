@@ -34,7 +34,6 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
-  const { mode } = useTheme();
 
   const questionDetails = questionData && JSON.parse(questionData || "");
 
@@ -54,16 +53,14 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
     setIsSubmitting(true);
     try {
       if (type === "Edit") {
-
         await editQuestion({
           questionId: questionDetails._id,
           title: values.title,
           content: values.explanation,
-          path: pathname
+          path: pathname,
         });
 
         router.push(`/question/${questionDetails._id}`);
-
       } else {
         // make a call to API -> to create a question
         // conatins all form data
@@ -139,7 +136,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
+              <FormDescription className="body-regular text-dark100_light900 mt-2.5">
                 Be specific and ask the question as if you&apos;re asking it to
                 another person
               </FormDescription>
@@ -187,20 +184,18 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                       "media",
                       "table",
                       "code",
-                      "help",
-                      "wordcount",
                     ],
                     toolbar:
                       "undo redo | blocks | " +
                       "codesample | bold italic forecolor | alignleft aligncenter " +
                       "alignright alignjustify | bullist numlist | ",
                     content_style: "body { font-family:Inter; font-size:16px }",
-                    skin: mode === "dark" ? "oxide-dark" : "oxide",
-                    content_css: mode === "dark" ? "dark" : "light",
+                    skin: "oxide",
+                    content_css: "light",
                   }}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
+              <FormDescription className="body-regular text-dark100_light900 mt-2.5">
                 Include as many details as possible. The more you tell us, the
                 easier it will be for
               </FormDescription>
@@ -219,7 +214,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
               <FormControl className="mt-3.5">
                 <>
                   <Input
-                    disabled={type === 'Edit'}
+                    disabled={type === "Edit"}
                     placeholder="Add tags..."
                     className="no-focus paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
                     onKeyDown={(e) => handleInputKeyDown(e, field)}
@@ -230,24 +225,29 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                         <Badge
                           key={tag}
                           className="subtle-medium background-light800_dark300 text-light400_light500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
-                          onClick={() => type !== 'Edit' ? handleTagRemove(tag, field) : ()=> {}}
+                          onClick={() =>
+                            type !== "Edit"
+                              ? handleTagRemove(tag, field)
+                              : () => {}
+                          }
                         >
                           {tag}
-                          {type !== 'Edit' &&
+                          {type !== "Edit" && (
                             <Image
-                            src="/assets/icons/close.svg"
-                            alt="close"
-                            className="cursor-pointer object-contain invert-0 dark:invert"
-                            width={12}
-                            height={12}
-                          />}
+                              src="/assets/icons/close.svg"
+                              alt="close"
+                              className="cursor-pointer object-contain invert-0 dark:invert"
+                              width={12}
+                              height={12}
+                            />
+                          )}
                         </Badge>
                       ))}
                     </div>
                   )}
                 </>
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
+              <FormDescription className="body-regular text-dark100_light900 mt-2.5">
                 Add tags to help others find your question. Use commas to
                 separate tags.
               </FormDescription>
@@ -257,7 +257,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
         />
         <Button
           type="submit"
-          className="primary-gradient w-fit text-light900_dark100 "
+          className="primary-gradient text-light900_dark100 w-fit "
           disabled={isSubmitting}
         >
           {isSubmitting ? (

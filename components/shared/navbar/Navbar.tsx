@@ -13,27 +13,29 @@ const Navbar = async () => {
 
   const allTags = await getAllTags({});
 
-
   const result = await getUserById({ userId });
-  console.log(result)
+  console.log(result);
   const user = {
     name: result?.name,
     username: result?.username,
-    picture: result?.picture
+    picture: result?.picture,
   };
 
   return (
     <nav className="flex-between light-border fixed left-1/2 top-2 z-50 w-[95%] max-w-6xl -translate-x-1/2 gap-5 rounded-xl border bg-zinc-300/40 px-4 py-2 shadow-light-300 backdrop-blur-md backdrop-saturate-150 dark:bg-dark-4/70 dark:shadow-none max-sm:w-[98%] max-sm:gap-1 sm:px-7">
-      <Link href="/" className="flex min-w-10 items-center gap-1">
-        <Image
-          src="/assets/images/site-logo.svg"
-          width={23}
-          height={23}
-          alt="DevThreads"
-        />
-        <p className="h2-bold max-sm::hidden line-clamp-1 font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Dev <span className="text-primary-500">Threads</span>
-        </p>
+      <Link href="/">
+        <div className="flex min-w-32 items-center gap-1">
+          <Image
+            src="/site-logo.svg"
+            width={28}
+            height={28}
+            alt="Rotōs"
+            className="size-9 invert-0 dark:invert"
+          />
+          <p className="h2-bold max-sm::hidden font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+            Rotōs
+          </p>
+        </div>
       </Link>
       <GlobalSearch />
       <div className="flex-center gap-3 ">

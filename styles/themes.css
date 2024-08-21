@@ -43,10 +43,18 @@
     @apply bg-dark-4 dark:bg-light-1 !important ;
   }
 
+  .primary-gradient2 {
+    @apply dark:bg-dark-4 bg-light-1 !important ;
+  }
+
   .text-dark100_light900 {
     @apply text-dark-100 dark:text-light-900 !important;
   }
    
+  .text-variant{
+    @apply dark:text-zinc-500 text-zinc-500
+  }
+
   .text-light900_dark100 {
     @apply dark:text-dark-100 text-light-900 !important;
   }

@@ -4,7 +4,14 @@ import React from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { SignedOut, useAuth } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  useAuth,
+} from "@clerk/nextjs";
 import { Button } from "../ui/button";
 
 const LeftSideBar = () => {
@@ -57,10 +64,26 @@ const LeftSideBar = () => {
           );
         })}
       </div>
+      <SignedIn>
+        <SignOutButton>
+          <Button className="small-medium primary-gradient min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
+            <Image
+              src="/assets/icons/logout.svg"
+              alt="login"
+              width={26}
+              height={26}
+              className="invert dark:invert-0 lg:hidden "
+            />
+            <span className="text-light-1 dark:text-dark-1 max-lg:hidden">
+              Sign-out
+            </span>
+          </Button>
+        </SignOutButton>
+      </SignedIn>
       <SignedOut>
         {/* if user is not logged in the content inside this will show */}
         <div className="flex flex-col gap-3">
-          <Link href="/sign-in">
+          <SignInButton mode="modal" >
             <Button className="small-medium primary-gradient min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
               <Image
                 src="/assets/icons/account.svg"
@@ -69,11 +92,13 @@ const LeftSideBar = () => {
                 height={26}
                 className="invert-0 dark:invert lg:hidden "
               />
-              <span className="text-light-1 dark:text-dark-1 max-lg:hidden">LogIn</span>
+              <span className="text-light-1 dark:text-dark-1 max-lg:hidden">
+                LogIn
+              </span>
             </Button>
-          </Link>
+          </SignInButton>
 
-          <Link href="/sign-up">
+          <SignUpButton mode="modal">
             <Button className="small-medium light-border-2 primary-gradient  min-h-[41px] w-full rounded-lg px-4 py-3 text-light-1 shadow-none dark:text-dark-1">
               <Image
                 src="/assets/icons/sign-up.svg"
@@ -84,7 +109,7 @@ const LeftSideBar = () => {
               />
               <span className="max-lg:hidden">SignUp</span>
             </Button>
-          </Link>
+          </SignUpButton>
         </div>
       </SignedOut>
     </section>

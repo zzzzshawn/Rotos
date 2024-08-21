@@ -77,7 +77,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-9 flex w-full flex-col gap-9"
+        className="mt-9 flex w-full flex-col gap-3"
       >
         <FormField
           control={form.control}
@@ -85,12 +85,12 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Name <span className="text-primary-500">*</span>
+                Name <span className="text-red-600">*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Enter Name"
-                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                  className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
                 />
               </FormControl>
@@ -104,12 +104,12 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
           render={({ field }) => (
             <FormItem className="space-y-3.5">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                username <span className="text-primary-500">*</span>
+                username <span className="text-red-600">*</span>
               </FormLabel>
               <FormControl>
                 <Input
                   placeholder="Your Usename"
-                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                  className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
                 />
               </FormControl>
@@ -129,7 +129,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                 <Input
                   type="url"
                   placeholder="Youe portfolio link"
-                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                  className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
                 />
               </FormControl>
@@ -148,7 +148,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
               <FormControl>
                 <Input
                   placeholder="Where are you from?"
-                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                  className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
                 />
               </FormControl>
@@ -168,7 +168,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
               <FormControl>
                 <Textarea
                   placeholder="What's special about you?"
-                  className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+                  className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
                 />
               </FormControl>
@@ -181,7 +181,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
           <Button
             disabled={isSubmitting}
             type="submit"
-            className="primary-gradient w-fit !text-light-900"
+            className="primary-gradient .text-light900_dark100 w-fit"
           >
             {isSubmitting ? "Saving..." : "Save"}
           </Button>

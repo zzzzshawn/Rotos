@@ -32,10 +32,9 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   });
 
   return (
-    <div className="sm:px-12 px-6">
-      <h1 className="h1-bold text-dark100_light900">Saved Questions</h1>
-
-      <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
+    <div className="sm:px-12 px-6 mt-10">
+      <h1 className="h1-bold text-dark100_light900">Collections</h1>
+      <div className="mt-6 flex justify-between gap-2 max-sm:flex-col sm:items-center">
         <LocalSearchbar
           route="/collection"
           iconPosition="left"
@@ -49,7 +48,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         />
       </div>
 
-      <div className="mt-10 flex w-full flex-col gap-6">
+      <div className="mt-5 flex w-full flex-col gap-6">
         {result.questions.length > 0 ? (
           result.questions.map((question: any) => (
             <QuestionCard
