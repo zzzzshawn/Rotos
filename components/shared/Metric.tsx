@@ -23,7 +23,7 @@ const Metric = ({
 }: MetricProps) => {
     // used metric component here like this, bcuz metrics can be user or likes,upvotes. if its likes, upvotes then no need for it to be a llink, if author it needs to be a link to go to author profile
   const MetricContent = (
-    <>
+    <div className="flex items-center gap-2">
       <Image
         src={imgUrl}
         height={16}
@@ -41,7 +41,7 @@ const Metric = ({
           {title}
         </span>
       </p>
-    </>
+    </div>
   );
 
 //   used if bcuz if there is href attr for Metric component (i.e: if metric is user) i want it to be clickable, hence <Link>

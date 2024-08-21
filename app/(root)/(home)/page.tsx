@@ -2,8 +2,6 @@ import QuestionCard from "@/components/cards/QuestionCard";
 import Filter from "@/components/shared/Filter";
 import NoResult from "@/components/shared/NoResult";
 import Pagination from "@/components/shared/Pagination";
-import HomeFilters from "@/components/shared/home/HomeFilters";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import {
@@ -60,7 +58,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         </Link>
       </div> */}
 
-      <div className="light-border mt-6 flex items-center justify-between gap-5 border-b  p-2 sm:items-center">
+      <div className="light-border mt-2 flex items-center justify-between gap-5 border-b  py-3 sm:items-center">
         {/* <LocalSearchbar
           route="/"
           iconPosition="left"
@@ -85,7 +83,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
 
       {/* <HomeFilters /> */}
 
-      <div className="mt-10 flex w-full flex-col gap-6 ">
+      <div className="mt-2 flex w-full flex-col">
         {result.questions.length > 0 ? (
           // displaying cards
           result.questions.map((question) => (

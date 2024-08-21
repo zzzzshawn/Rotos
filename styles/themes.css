@@ -105,7 +105,7 @@
   }
 
   .light-border-2 {
-    @apply border-dark-4/80 dark:border-dark-4 !important;
+    @apply border-light-3/80 dark:border-dark-4 !important;
   }
 
   .h1-bold {

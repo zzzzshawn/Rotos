@@ -13,7 +13,7 @@ const LeftSideBar = () => {
 
   return (
     <section className=" background-light850_dark100 light-border sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-x p-6 pt-36 max-sm:hidden lg:w-[280px]  ">
-      <div className="flex flex-1 flex-col gap-3">
+      <div className="flex flex-1 flex-col gap-4">
         {sidebarLinks.map((item) => {
           // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
 
@@ -43,8 +43,8 @@ const LeftSideBar = () => {
               {/* checks if the link is active using isActive if yes apply needed classes */}
               <Image
                 src={item.imgURL}
-                width={26}
-                height={26}
+                width={30}
+                height={30}
                 alt={item.label}
                 className={`${isActive ? "dark:invert" : "invert-colors"}`}
               />

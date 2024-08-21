@@ -8,9 +8,9 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import { sidebarLinks } from "@/constants";
+import { mobileSidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 
@@ -28,8 +28,9 @@ const NavContent = () => {
 
   return (
     <section className="light-border mt-5 flex flex-col gap-2 border-t pt-4">
+
       <h2 className="text-dark300_light900 base-bold">Discover</h2>
-      {sidebarLinks.map((item) => {
+      {mobileSidebarLinks.map((item) => {
         // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
 
         const isActive =
@@ -73,12 +74,12 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
 
   return (
     <Sheet>
-      <SheetTrigger asChild className="min-w-9">
+      <SheetTrigger asChild className="min-w-8">
         {/* acts as child */}
         <Image
           src="/assets/icons/hamburger.svg"
-          width={36}
-          height={36}
+          width={32}
+          height={32}
           alt="Menu"
           className="invert-colors sm:hidden"
         />
@@ -87,6 +88,7 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
         side="left"
         className="background-light850_dark100 border-none"
       >
+
         <Link href="/" className="flex items-center gap-1">
           {/* shows logo in mobile nav */}
           <Image
@@ -99,6 +101,8 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
             Dev <span className="text-primary-500">Threads</span>
           </p>
         </Link>
+
+
         <SignedIn>
           <SheetClose asChild>
             <Link href={`/profile/${userId}`}>
@@ -119,17 +123,21 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
             </Link>
           </SheetClose>
         </SignedIn>
+
+
+
         <div className="flex h-full flex-col justify-start gap-8 pb-10 ">
           <SheetClose asChild className="">
             {/* nav links */}
             <NavContent />
           </SheetClose>
 
+
           <SignedIn>
             {tags && (
               <div className=" light-border border-t pt-5">
                 <h2 className="text-dark300_light900 base-bold">
-                  Popular Tags
+                  Tags
                 </h2>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {tags?.map((tag: any) => (
@@ -148,6 +156,8 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
               </div>
             )}
           </SignedIn>
+
+
 
           <SignedOut>
             {/* if user is not logged in the content inside this will show */}
@@ -171,6 +181,8 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
               </SheetClose>
             </div>
           </SignedOut>
+
+
         </div>
       </SheetContent>
     </Sheet>

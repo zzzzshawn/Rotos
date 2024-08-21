@@ -42,12 +42,23 @@ const QuestionCard = (props: QuestionProps) => {
   const showActionButtons = clerkId && clerkId === author.clerkId;
 
   return (
-    <div className="card-wrapper rounded-[10px] p-9 xs:mt-2 sm:px-11 ">
-      <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
-        <div className="">
-          <span className="subtle-regular text-dark400_light700 line-clamp-1 flex sm:hidden ">
+    <div className="card-wrapper light-border-2 border-b px-6 pb-6 pt-5 xs:mt-1 sm:px-10 ">
+      <div className="flex flex-col items-start justify-between gap-5">
+        <div className="flex-between w-full">
+          <Metric
+            imgUrl={author.picture}
+            alt="user"
+            value={author.name}
+            title={``}
+            href={`/profile/${author._id}`}
+            isAuthor
+            textStyles="text-dark400_light700  "
+          />
+          <span className="subtle-regular text-dark400_light700 mt-2 line-clamp-1 flex">
             {getTimestamp(createdAt)}
           </span>
+        </div>
+        <div className="w-full">
           <Link href={`/question/${_id}`}>
             <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1 ">
               {title}
@@ -63,42 +74,32 @@ const QuestionCard = (props: QuestionProps) => {
         </SignedIn>
       </div>
 
-      <div className="mt-3.5 flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
-        ))}
-      </div>
-
       <div className="flex-between mt-6 w-full flex-wrap gap-3 ">
-        <Metric
-          imgUrl={author.picture}
-          alt="user"
-          value={author.name}
-          title={` - asked ${getTimestamp(createdAt)}`}
-          href={`/profile/${author._id}`}
-          isAuthor
-          textStyles=" body-medium text-dark400_light700  "
-        />
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
+          ))}
+        </div>
         <div className="flex items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"
             value={formatAndDivideNumber(upvotes.length)}
-            title=" Votes"
+            title=""
             textStyles=" small-medium text-dark400_light800  "
           />
           <Metric
             imgUrl="/assets/icons/message.svg"
             alt="answers"
             value={formatAndDivideNumber(answers.length)}
-            title=" Answers"
+            title=""
             textStyles=" small-medium text-dark400_light800  "
           />
           <Metric
             imgUrl="/assets/icons/eye.svg"
             alt="eye"
             value={formatAndDivideNumber(views)}
-            title=" Views"
+            title=""
             textStyles=" small-medium text-dark400_light800  "
           />
         </div>
