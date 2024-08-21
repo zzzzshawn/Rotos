@@ -11,15 +11,15 @@ import { getAllTags } from "@/lib/actions/tag.actions";
 const Navbar = async () => {
   const { userId } = auth();
 
-  const popularTags = await getAllTags({});
-  console.log(popularTags)
-
+  const allTags = await getAllTags({});
 
 
   const result = await getUserById({ userId });
+  console.log(result)
   const user = {
     name: result?.name,
     username: result?.username,
+    picture: result?.picture
   };
 
   return (
@@ -38,7 +38,7 @@ const Navbar = async () => {
       <GlobalSearch />
       <div className="flex-center gap-3 ">
         <Theme />
-        <MobileNav user={user} popularTags={popularTags?.tags} />
+        <MobileNav user={user} popularTags={JSON.stringify(allTags?.tags)} />
       </div>
       <div className="flex-between gap-5 max-sm:hidden">
         <SignedIn>

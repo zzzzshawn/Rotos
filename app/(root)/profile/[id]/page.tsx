@@ -7,34 +7,41 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserInfo } from "@/lib/actions/user.action";
 import { getJoinedDate } from "@/lib/utils";
 import { URLProps } from "@/types";
-import { auth, SignedIn } from "@clerk/nextjs";
+import { auth, SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Profile',
-  description: 'Profile page of Dev Overflow'
+  title: "Profile",
+  description: "Profile page of Dev Overflow",
 };
 
 const ProfileDetails = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
-  const { user, totalQuestions, totalAnswers, reputation, badgeCounts } = 
-  await getUserInfo({
-    userId: params.id,
-  });
+  const { user, totalQuestions, totalAnswers, reputation, badgeCounts } =
+    await getUserInfo({
+      userId: params.id,
+    });
   return (
     <>
       <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
         <div className="flex flex-col items-start gap-4 lg:flex-row">
-          <Image
-            src={user?.picture}
-            alt="profile"
-            width={140}
-            height={140}
-            className="rounded-full object-cover"
-          />
-          <div className="mt-3">
+          <SignedIn>
+            <UserButton
+              afterSignOutUrl="/"
+              appearance={{
+                elements: {
+                  // sets height and width for user profile button
+                  avatarBox: "size-32",
+                },
+                variables: {
+                  colorPrimary: "#ff7000",
+                },
+              }}
+            />
+          </SignedIn>
+          <div className="mt-3 ">
             <h2 className="h2-bold text-dark100_light900">{user.name}</h2>
             <p className="paragraph-regular text-dark200_light800">
               @{user.username}
@@ -105,7 +112,10 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               clerkId={clerkId}
             />
           </TabsContent>
-          <TabsContent value="answers" className="mt-5 flex w-full flex-col gap-6">
+          <TabsContent
+            value="answers"
+            className="mt-5 flex w-full flex-col gap-6"
+          >
             <AnswersTab
               searchParams={searchParams}
               userId={user._id}

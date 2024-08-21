@@ -38,13 +38,13 @@ const LeftSideBar = () => {
                 isActive
                   ? " primary-gradient rounded-lg text-light-1 dark:text-dark-1"
                   : "text-dark300_light900"
-              } flex items-center justify-start gap-4 bg-transparent p-4`}
+              } flex items-center justify-start gap-2 bg-transparent px-4 py-3`}
             >
               {/* checks if the link is active using isActive if yes apply needed classes */}
               <Image
                 src={item.imgURL}
-                width={25}
-                height={25}
+                width={26}
+                height={26}
                 alt={item.label}
                 className={`${isActive ? "dark:invert" : "invert-colors"}`}
               />
@@ -65,8 +65,8 @@ const LeftSideBar = () => {
               <Image
                 src="/assets/icons/account.svg"
                 alt="login"
-                width={25}
-                height={25}
+                width={26}
+                height={26}
                 className="invert-0 dark:invert lg:hidden "
               />
               <span className="text-light-1 dark:text-dark-1 max-lg:hidden">LogIn</span>
@@ -78,8 +78,8 @@ const LeftSideBar = () => {
               <Image
                 src="/assets/icons/sign-up.svg"
                 alt="signup"
-                width={25}
-                height={25}
+                width={26}
+                height={26}
                 className="invert-0 dark:invert lg:hidden "
               />
               <span className="max-lg:hidden">SignUp</span>

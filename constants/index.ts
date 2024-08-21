@@ -34,12 +34,6 @@ export const sidebarLinks: SidebarLink[] = [
     label: "Tags",
   },
   {
-    imgURL: "/assets/icons/user.svg",
-    route: "/profile",
-    classname:"row-start-3 row-end-5 col-start-2 col-end-3",
-    label: "Profile",
-  },
-  {
     imgURL: "/assets/icons/question.svg",
     route: "/ask-question",
     classname:"row-start-5 row-end-6 col-start-1 col-end-3",

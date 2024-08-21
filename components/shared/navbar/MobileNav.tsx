@@ -8,18 +8,19 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, useAuth, UserButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { sidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
-import RenderTag from "../RenderTag";
+import { Badge } from "@/components/ui/badge";
 
 interface UserParams {
   user?: {
     name?: string;
     username?: string;
+    picture?: any;
   };
-  popularTags?: any[] | undefined;
+  popularTags?: string | undefined;
 }
 
 const NavContent = () => {
@@ -66,8 +67,9 @@ const NavContent = () => {
 };
 
 const MobileNav = ({ user, popularTags }: UserParams) => {
-  const tags =
-    popularTags?.length > 10 ? popularTags?.slice(0, 10) : popularTags || [];
+  const { userId } = useAuth();
+  const pTags = popularTags ? JSON.parse(popularTags) : [];
+  const tags = pTags?.length > 10 ? pTags?.slice(0, 10) : pTags || [];
 
   return (
     <Sheet>
@@ -98,26 +100,24 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
           </p>
         </Link>
         <SignedIn>
-          <div className="light-border background-light850_dark100 mt-8 flex w-full items-center justify-start gap-5 rounded-full border p-1 shadow-lg dark:shadow-md dark:shadow-zinc-900">
-            {/* <SignedIn> is a clerk functionality that checks if user is authenticated, if yes then show content inside <SignedIn>   */}
-            <UserButton
-              afterSignOutUrl="/"
-              appearance={{
-                elements: {
-                  // sets height and width for user profile button
-                  avatarBox: "size-14",
-                },
-                variables: {
-                  colorPrimary: "#ff7000",
-                },
-              }}
-            />
-
-            <div className="text-dark100_light900 flex flex-col">
-              <p className="base-bold">{user?.name}</p>
-              <p className="dark:text-zinc-600">@{user?.username}</p>
-            </div>
-          </div>
+          <SheetClose asChild>
+            <Link href={`/profile/${userId}`}>
+              <div className="light-border background-light850_dark100 mt-8 flex w-full items-center justify-start gap-5 rounded-full border p-1 shadow-lg dark:shadow-md dark:shadow-zinc-900">
+                {/* <SignedIn> is a clerk functionality that checks if user is authenticated, if yes then show content inside <SignedIn>   */}
+                <Image
+                  src={user?.picture}
+                  alt="pfp"
+                  width={70}
+                  height={70}
+                  className="rounded-full"
+                />
+                <div className="text-dark100_light900 flex w-full flex-col">
+                  <p className="base-bold">{user?.name}</p>
+                  <p className="dark:text-zinc-600">@{user?.username}</p>
+                </div>
+              </div>
+            </Link>
+          </SheetClose>
         </SignedIn>
         <div className="flex h-full flex-col justify-start gap-8 pb-10 ">
           <SheetClose asChild className="">
@@ -126,20 +126,27 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
           </SheetClose>
 
           <SignedIn>
-            <div className=" light-border border-t pt-5">
-              <h2 className="text-dark300_light900 base-bold">Popular Tags</h2>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {tags?.map((tag) => (
-                  <SheetClose key={tag._id} asChild>
-                    <RenderTag
-                      _id={tag._id}
-                      name={tag.name}
-                      totalQuestions={tag.numberOfQuestions}
-                    />
-                  </SheetClose>
-                ))}
+            {tags && (
+              <div className=" light-border border-t pt-5">
+                <h2 className="text-dark300_light900 base-bold">
+                  Popular Tags
+                </h2>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {tags?.map((tag: any) => (
+                    <SheetClose asChild key={tag._id}>
+                      <Link
+                        href={`/tags/${tag._id}`}
+                        className="flex justify-between gap-2"
+                      >
+                        <Badge className="subtle-medium text-dark100_light900 rounded-md border border-light-3 bg-transparent  px-4 py-2 uppercase  dark:border-dark-4">
+                          {tag.name}
+                        </Badge>
+                      </Link>
+                    </SheetClose>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </SignedIn>
 
           <SignedOut>
