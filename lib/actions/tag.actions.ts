@@ -10,6 +10,7 @@ import {
 import Tag, { ITag } from "@/database/tag.model";
 import { FilterQuery } from "mongoose";
 import Question from "@/database/question.model";
+import Interaction from "@/database/interaction.model";
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
   try {
@@ -22,12 +23,34 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
     if (!user) throw new Error("user not found");
 
     // find interactions for user and group by tags...
+    const interactions = await Interaction.aggregate([
+      {
+        $match: { user: userId },
+      },
+      {
+        $unwind: "$tags",
+      },
+      {
+        $group: {
+          _id: null,
+          tags: { $addToSet: "$tags" },
+        },
+      },
+      {
+        $project: { _id: 0, tags: 1 },
+      },
+    ]);
+    
+    if (interactions.length > 0) {
+      // Populate the tags
+      const populatedTags = await Tag.find({
+        _id: { $in: interactions[0].tags },
+      });
+      
+      return populatedTags.slice(0,3);
+    }
 
-    return [
-      { _id: "1", name: "tag" },
-      { _id: "2", name: "tag2" },
-      { _id: "3", name: "tag3" },
-    ];
+    return [];
   } catch (error) {
     console.log(error);
     throw error;
@@ -73,9 +96,9 @@ export async function getAllTags(params: GetAllTagsParams) {
       .limit(pageSize)
       .sort(sortOptions);
 
-      const totalTags = await Tag.countDocuments(query);
+    const totalTags = await Tag.countDocuments(query);
 
-      const isNext = totalTags > skipAmount + tags.length;
+    const isNext = totalTags > skipAmount + tags.length;
 
     return { tags, isNext };
   } catch (error) {

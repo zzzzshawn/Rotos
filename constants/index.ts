@@ -28,12 +28,6 @@ export const sidebarLinks: SidebarLink[] = [
     label: "Collections",
   },
   {
-    imgURL: "/assets/icons/tag.svg",
-    route: "/tags",
-    classname:"row-start-3 row-end-5 col-start-1 col-end-2",
-    label: "Tags",
-  },
-  {
     imgURL: "/assets/icons/user.svg",
     route: "/profile",
     classname:"row-start-3 row-end-5 col-start-2 col-end-3",
@@ -66,12 +60,6 @@ export const mobileSidebarLinks: SidebarLink[] = [
     route: "/collection",
     classname:"row-start-2 row-end-3 col-start-2 col-end-3",
     label: "Collections",
-  },
-  {
-    imgURL: "/assets/icons/tag.svg",
-    route: "/tags",
-    classname:"row-start-3 row-end-5 col-start-1 col-end-2",
-    label: "Tags",
   },
   {
     imgURL: "/assets/icons/question.svg",

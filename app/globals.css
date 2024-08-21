@@ -55,7 +55,7 @@ body {
   }
 
   .tab {
-    @apply min-h-full dark:bg-dark-400 bg-light-800 text-light-500 dark:data-[state=active]:bg-dark-300 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-500 !important;
+    @apply min-h-full dark:bg-dark-2 bg-light-2 text-dark-4 dark:text-light-2  dark:data-[state=active]:bg-light-1 data-[state=active]:bg-dark-4 data-[state=active]:text-light-2 dark:data-[state=active]:text-dark-2 !important;
   }
 }
 

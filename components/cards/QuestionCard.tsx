@@ -58,20 +58,19 @@ const QuestionCard = (props: QuestionProps) => {
             {getTimestamp(createdAt)}
           </span>
         </div>
-        <div className="w-full">
+        <div className="flex-between w-full">
           <Link href={`/question/${_id}`}>
             <h3 className="sm:h3-semibold base-semibold text-dark200_light900 line-clamp-1 flex-1 ">
               {title}
             </h3>
           </Link>
+          {/* if signed in add edit , delete options */}
+          <SignedIn>
+            {showActionButtons && (
+              <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+            )}
+          </SignedIn>
         </div>
-
-        {/* if signed in add edit , delete options */}
-        <SignedIn>
-          {showActionButtons && (
-            <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
-          )}
-        </SignedIn>
       </div>
 
       <div className="flex-between mt-6 w-full">

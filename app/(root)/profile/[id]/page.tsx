@@ -24,46 +24,78 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
       userId: params.id,
     });
   return (
-    <>
-      <div className="flex flex-col-reverse items-start justify-between sm:flex-row">
-        <div className="flex flex-col items-start gap-4 lg:flex-row">
-          <SignedIn>
-            <UserButton
-              afterSignOutUrl="/"
-              appearance={{
-                elements: {
-                  // sets height and width for user profile button
-                  avatarBox: "size-32",
-                },
-                variables: {
-                  colorPrimary: "#ff7000",
-                },
-              }}
+    <div className="w-full">
+      <div className="text-dark100_light900 mt-1 flex w-full flex-col gap-1 px-10 pb-2 pt-4">
+        <h1 className="h2-bold">{user.name}</h1>
+        <p className="body-medium">Stats - {reputation}</p>
+      </div>
+      <div className="relative h-[200px]  w-full bg-dark-4/10 dark:bg-dark-3">
+        <div className="absolute bottom-[-30%] left-5">
+          {clerkId === params.id ? (
+            <SignedIn>
+              <UserButton
+                afterSignOutUrl="/"
+                appearance={{
+                  elements: {
+                    // sets height and width for user profile button
+                    avatarBox: "size-32 max-sm:size-28",
+                  },
+                  variables: {
+                    colorPrimary: "#ff7000",
+                  },
+                }}
+              />
+            </SignedIn>
+          ) : (
+            <Image
+              src={user?.picture}
+              alt="profile"
+              width={140}
+              height={140}
+              className="rounded-full object-cover"
             />
-          </SignedIn>
-          <div className="mt-3 ">
+          )}
+        </div>
+        <SignedIn>
+          {clerkId === user.clerkId && (
+            <Link
+              href="/profile/edit"
+              className="absolute bottom-[-28%] right-6 "
+            >
+              <Button className="paragraph-medium light-border-2 text-dark300_light900 min-h-[46px] rounded-full border px-6 py-3">
+                Edit profile
+              </Button>
+            </Link>
+          )}
+        </SignedIn>
+      </div>
+      <div className="flex flex-col-reverse items-start justify-between px-6 pt-16 sm:flex-row sm:px-10">
+        <div className="flex flex-col items-start gap-4 lg:flex-row">
+          <div className="mt-3">
             <h2 className="h2-bold text-dark100_light900">{user.name}</h2>
             <p className="paragraph-regular text-dark200_light800">
               @{user.username}
             </p>
-            <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
-              {user.portfolioWebsite && (
-                <ProfileLink
-                  imgUrl="/assets/icons/link.svg"
-                  href={user.portfolioWebsite}
-                  title="Portfolio"
-                />
-              )}
-              {user.location && (
-                <ProfileLink
-                  imgUrl="/assets/icons/location.svg"
-                  title={user.location}
-                />
-              )}
+            <div className="mt-5 flex w-full flex-col items-start justify-start gap-3">
               <ProfileLink
                 imgUrl="/assets/icons/calendar.svg"
                 title={getJoinedDate(user.joinedAt)}
               />
+              <div className="flex w-full flex-wrap gap-5">
+                {user.portfolioWebsite && (
+                  <ProfileLink
+                    imgUrl="/assets/icons/link.svg"
+                    href={user.portfolioWebsite}
+                    title="Portfolio"
+                  />
+                )}
+                {user.location && (
+                  <ProfileLink
+                    imgUrl="/assets/icons/location.svg"
+                    title={user.location}
+                  />
+                )}
+              </div>
             </div>
             {user.bio && (
               <p className="paragraph-regular text-dark400_light800 mt-8">
@@ -71,18 +103,6 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               </p>
             )}
           </div>
-        </div>
-
-        <div className="flex justify-end max-sm:mb-5 max-sm:w-full sm:mt-3">
-          <SignedIn>
-            {clerkId === user.clerkId && (
-              <Link href="/profile/edit">
-                <Button className="paragraph-medium btn-secondary text-dark300_light900 min-h-[46px] min-w-[175px] px-4 py-3">
-                  Edit profile
-                </Button>
-              </Link>
-            )}
-          </SignedIn>
         </div>
       </div>
       {/* User Stats */}
@@ -92,9 +112,9 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
         totalAnswers={totalAnswers}
         badges={badgeCounts}
       />
-      <div className="mt-10 flex gap-10">
+      <div className="mt-10 flex gap-10 px-5 sm:px-10">
         <Tabs defaultValue="top-posts" className="flex-1">
-          <TabsList className="background-light800_dark400 min-h-[42px] p-1">
+          <TabsList className="background-light850_dark100 light-border-2 min-h-[42px] border py-2">
             <TabsTrigger className="tab" value="top-posts">
               Top Posts
             </TabsTrigger>
@@ -124,7 +144,7 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
           </TabsContent>
         </Tabs>
       </div>
-    </>
+    </div>
   );
 };
 export default ProfileDetails;
