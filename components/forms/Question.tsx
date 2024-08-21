@@ -131,7 +131,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
           render={({ field }) => (
             <FormItem className="flex w-full flex-col">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Question Title <span className="text-primary-500">*</span>
+                Question Title <span className="text-red-600">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
                 <Input
@@ -139,11 +139,11 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
                 Be specific and ask the question as if you&apos;re asking it to
                 another person
               </FormDescription>
-              <FormMessage className="text-red-500" />
+              <FormMessage className="text-red-600" />
             </FormItem>
           )}
         />
@@ -154,7 +154,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
             <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="paragraph-semibold text-dark400_light800">
                 Detailed explanation of your problem{" "}
-                <span className="text-primary-500">*</span>
+                <span className="text-red-600">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
                 <Editor
@@ -200,7 +200,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                   }}
                 />
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
                 Include as many details as possible. The more you tell us, the
                 easier it will be for
               </FormDescription>
@@ -214,7 +214,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
           render={({ field }) => (
             <FormItem className="flex w-full flex-col">
               <FormLabel className="paragraph-semibold text-dark400_light800">
-                Tags <span className="text-primary-500">*</span>
+                Tags <span className="text-red-600">*</span>
               </FormLabel>
               <FormControl className="mt-3.5">
                 <>
@@ -247,7 +247,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                   )}
                 </>
               </FormControl>
-              <FormDescription className="body-regular mt-2.5 text-light-500">
+              <FormDescription className="body-regular mt-2.5 text-dark100_light900">
                 Add tags to help others find your question. Use commas to
                 separate tags.
               </FormDescription>
@@ -257,7 +257,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
         />
         <Button
           type="submit"
-          className="primary-gradient w-fit !text-light-900"
+          className="primary-gradient w-fit text-light900_dark100 "
           disabled={isSubmitting}
         >
           {isSubmitting ? (

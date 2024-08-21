@@ -7,16 +7,17 @@ import Votes from "@/components/shared/Votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
-import { auth } from "@clerk/nextjs";
+import { auth, SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: 'Question details',
-  description: 'Question page of Dev Overflow'
+  title: "Question details",
+  description: "Question page of Dev Overflow",
 };
 
 interface QuestionDetailsProps {
@@ -35,9 +36,9 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
   }
 
   return (
-    <>
+    <div className="sm:px-12 px-6 mt-8">
       <div className="flex-start w-full flex-col">
-        <div className="flex w-full flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
+        <div className="mb-3 flex w-full justify-between flex-row items-center">
           <Link
             href={`/profile/${result.author.clerkId}`}
             className="flex items-center justify-start gap-1"
@@ -53,74 +54,90 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
               {result.author.name}
             </p>
           </Link>
-          <div className="flex justify-end">
-            <Votes
-              type="Question"
-              itemId={JSON.stringify(result._id)}
-              userId={JSON.stringify(mongoUser._id)}
-              upvotes={result.upvotes.length}
-              hasupVoted={result.upvotes.includes(mongoUser._id)}
-              downvotes={result.downvotes.length}
-              hasdownVoted={result.downvotes.includes(mongoUser._id)}
-              hasSaved={mongoUser?.saved.includes(result._id)}
-            />
-          </div>
+          <Metric
+            imgUrl="/assets/icons/clock.svg"
+            alt="clock"
+            value={` asked ${getTimestamp(result.createdAt)}`}
+            title=""
+            textStyles=" small-medium text-dark400_light800  "
+          />
         </div>
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">
           {result.title}
         </h2>
       </div>
-      <div className="mb-8 mt-5 flex flex-wrap gap-4">
-        <Metric
-          imgUrl="/assets/icons/clock.svg"
-          alt="clock"
-          value={` asked ${getTimestamp(result.createdAt)}`}
-          title=" Asked"
-          textStyles=" small-medium text-dark400_light800  "
-        />
+
+      <div className="sm:mb-5 mb-2 mt-5 flex flex-wrap gap-4">
         <Metric
           imgUrl="/assets/icons/message.svg"
           alt="answers"
           value={formatAndDivideNumber(result.answers.length)}
-          title=" Answers"
+          title=" "
           textStyles=" small-medium text-dark400_light800  "
         />
         <Metric
           imgUrl="/assets/icons/eye.svg"
           alt="eye"
           value={formatAndDivideNumber(result.views)}
-          title=" Views"
+          title=""
           textStyles=" small-medium text-dark400_light800  "
         />
       </div>
 
       <ParseHTML data={result.content} />
-
-      <div className="mt-8 flex flex-wrap gap-2">
-        {result.tags.map((tag: any) => (
-          <RenderTag
-            key={tag._id}
-            _id={tag._id}
-            name={tag.name}
-            showCount={false}
+      <div className="flex-between w-full border-b pb-3 light-border-2">
+        <div className="flex w-2/3  flex-wrap gap-2">
+          {result.tags.map((tag: any) => (
+            <RenderTag
+              key={tag._id}
+              _id={tag._id}
+              name={tag.name}
+              showCount={false}
+            />
+          ))}
+        </div>
+        <div className="flex w-max  items-center gap-3 max-sm:justify-start">
+          <Votes
+            type="Question"
+            itemId={JSON.stringify(result._id)}
+            userId={JSON.stringify(mongoUser?._id)}
+            upvotes={result.upvotes.length}
+            hasupVoted={result.upvotes.includes(mongoUser?._id)}
+            downvotes={result.downvotes.length}
+            hasdownVoted={result.downvotes.includes(mongoUser?._id)}
+            hasSaved={mongoUser?.saved.includes(result._id)}
           />
-        ))}
+        </div>
       </div>
 
-      <AllAnswers
-        questionId={result._id}
-        userId={mongoUser._id}
-        totalAnswers={result.answers.length}
-        page={searchParams?.page? +searchParams?.page : 1}
-        filter={searchParams?.filter}
-      />
+      {clerkId ? (
+        <SignedIn>
+          <AllAnswers
+            questionId={result._id}
+            userId={mongoUser._id}
+            totalAnswers={result.answers.length}
+            page={searchParams?.page ? +searchParams?.page : 1}
+            filter={searchParams?.filter}
+          />
 
-      <Answer
-        question={result.content}
-        questionId={JSON.stringify(result._id)}
-        authorId={JSON.stringify(mongoUser._id)}
-      />
-    </>
+          <Answer
+            question={result.content}
+            questionId={JSON.stringify(result._id)}
+            authorId={JSON.stringify(mongoUser?._id)}
+          />
+        </SignedIn>
+      ) : (
+        <SignedOut>
+          <Link href="/sign-in">
+            <div className="w-full mt-3">
+              <Button className="primary-gradient text-light900_dark100 mx-auto ">
+                Sign in to contribute
+              </Button>
+            </div>
+          </Link>
+        </SignedOut>
+      )}
+    </div>
   );
 };
 

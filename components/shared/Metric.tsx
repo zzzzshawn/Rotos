@@ -46,7 +46,7 @@ const Metric = ({
 
 //   used if bcuz if there is href attr for Metric component (i.e: if metric is user) i want it to be clickable, hence <Link>
   if(href){
-    <Link href={href} className="flex-center gap-1">
+    return <Link href={href} className="flex-center cursor-pointer gap-1">
         {MetricContent}
     </Link>
   }

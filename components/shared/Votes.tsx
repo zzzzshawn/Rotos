@@ -16,7 +16,7 @@ import { viewQuestion } from "@/lib/actions/interaction.action";
 interface Props {
   type: string;
   itemId: string;
-  userId: string;
+  userId?: string;
   upvotes: number;
   hasupVoted: boolean;
   downvotes: number;
@@ -39,17 +39,23 @@ const Votes = ({
   const router = useRouter();
 
   const handleSave = async () => {
-    await toggleSaveQuestion({
-      userId: JSON.parse(userId),
-      questionId: JSON.parse(itemId),
-      path: pathname
-    })
+    if (userId) {
+      await toggleSaveQuestion({
+        userId: JSON.parse(userId),
+        questionId: JSON.parse(itemId),
+        path: pathname,
+      });
+
+      return toast({
+        title: `Question ${
+          !hasSaved ? "Saved in" : "Removed from"
+        } your collection`,
+        variant: !hasSaved ? "default" : "destructive",
+      });
+    }
 
     return toast({
-      title: `Question ${
-        !hasSaved ? 'Saved in' : 'Removed from'
-      } your collection`,
-      variant: !hasSaved ? 'default' : 'destructive'
+      title: "Please login to save questions",
     })
   };
 
@@ -113,14 +119,12 @@ const Votes = ({
     }
   };
 
-
   useEffect(() => {
     viewQuestion({
       questionId: JSON.parse(itemId),
-      userId: userId ? JSON.parse(userId) : undefined
-    })
-  }, [itemId, userId, pathname, router])
-  
+      userId: userId ? JSON.parse(userId) : undefined,
+    });
+  }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
