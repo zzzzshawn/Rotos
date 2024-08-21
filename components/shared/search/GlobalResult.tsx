@@ -1,26 +1,25 @@
-'use client';
+"use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ReloadIcon } from '@radix-ui/react-icons'
+import { ReloadIcon } from "@radix-ui/react-icons";
 import GlobalFilters from "./GlobalFilters";
 import { globalSearch } from "@/lib/actions/general.action";
-
+import { ChevronRightIcon } from "lucide-react";
 
 const GlobalResult = () => {
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
 
   const [result, setResult] = useState([
-    { type: 'question', id: 1, title: 'Next.js question' },
-    { type: 'tag', id: 1, title: 'Nextjs' },
-    { type: 'user', id: 1, title: 'jsm' }
+    { type: "question", id: 1, title: "Next.js question" },
+    { type: "tag", id: 1, title: "Nextjs" },
+    { type: "user", id: 1, title: "jsm" },
   ]);
 
-  const global = searchParams.get('global');
-  const type = searchParams.get('type');
+  const global = searchParams.get("global");
+  const type = searchParams.get("type");
 
   // global search useEffect
   useEffect(() => {
@@ -31,7 +30,7 @@ const GlobalResult = () => {
         // fetch everything everywhere all at once => globalSearch, filter
         const res = await globalSearch({
           query: global,
-          type
+          type,
         });
 
         setResult(JSON.parse(res));
@@ -50,62 +49,54 @@ const GlobalResult = () => {
 
   const renderLink = (type: string, id: string) => {
     switch (type) {
-      case 'question':
+      case "question":
         return `/question/${id}`;
 
-      case 'answer':
+      case "answer":
         return `/question/${id}`;
 
-      case 'tag':
+      case "tag":
         return `/tags/${id}`;
 
-      case 'user':
+      case "user":
         return `/profile/${id}`;
 
       default:
-        return '/';
+        return "/";
     }
   };
 
   return (
-    <div className="absolute top-full z-10 mt-3 w-full rounded-xl bg-light-800 py-5 shadow-sm dark:bg-dark-400">
+    <div className="background-light850_dark100 absolute top-full z-10 mt-3 w-full rounded-xl py-5 shadow-lg dark:border dark:border-dark-4 dark:shadow-light-100">
       <p className="text-dark400_light900 paragraph-semibold px-5">
         <GlobalFilters />
       </p>
-      <div className="my-5 h-px bg-light-700/50 dark:bg-dark-500/50" />
-      <div className="space-y-5">
+      <div className="my-4 h-px bg-light-700/50 dark:bg-dark-500/50 max-sm:hidden" />
+      <div className="space-y-2.5">
         <p className="text-dark400_light900 paragraph-semibold px-5">
-          Top Match
+          Top Matches
         </p>
 
         {isLoading ? (
           <div className="flex-center flex-col px-5">
-            <ReloadIcon className="my-2 size-10 animate-spin text-primary-500" />
-            <p className="text-dark200_light800 body-regular">
-              Browsing the entire database
-            </p>
+            <ReloadIcon className="text-dark400_light900 my-2 size-10 animate-spin " />
+            <p className="text-dark200_light800 body-regular">Searching..</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             {result.length > 0 ? (
               result.map((item: any, index: number) => (
                 <Link
                   href={renderLink(item.type, item.id)}
                   key={item.type + item.id + index}
-                  className="flex w-full cursor-pointer items-start gap-3 px-5 py-2.5 hover:bg-light-700/50 hover:dark:bg-dark-500/50" 
+                  className="mx-2 flex w-[97%] cursor-pointer items-start gap-3 rounded-lg px-5 py-2.5 hover:bg-zinc-100/50 hover:dark:bg-dark-500/50 max-sm:px-1"
                 >
-                  <Image
-                    src={'/assets/icons/tag.svg'}
-                    alt="tags"
-                    width={18}
-                    height={18}
-                    className="invert-colors mt-1 object-contain"
-                  />
+                  <ChevronRightIcon className="dark:invert max-sm:min-w-5" />
                   <div className="flex flex-col">
                     <p className="body-medium text-dark200_light800 line-clamp-1">
                       {item.title}
                     </p>
-                    <p className="text-light400_light500 small-medium mt-1 font-bold capitalize">
+                    <p className="text-dark200_light800 small-medium mt-1 font-bold capitalize">
                       {item.type}
                     </p>
                   </div>

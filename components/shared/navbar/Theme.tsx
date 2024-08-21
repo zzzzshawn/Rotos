@@ -37,7 +37,7 @@ const Theme = () => {
             />
           )}
         </MenubarTrigger>
-        <MenubarContent className="background-light900_dark200 absolute -right-12 mt-3 min-w-[120px] rounded border bg-light-900 py-2 dark:border-dark-400  dark:bg-dark-300">
+        <MenubarContent className="background-light850_dark100 light-border-2 absolute -right-12 mt-3 min-w-[120px] rounded border py-2 ">
           {themes.map(
             (
               item // imported themes which has info on different linnks on the toggle mode menu.
@@ -54,20 +54,16 @@ const Theme = () => {
                     localStorage.removeItem("theme");
                   }
                 }}
-                className="flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400"
+                className="text-dark100_light900 flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-4 focus:bg-zinc-200/40"
               >
                 <Image
                   src={item.icon}
                   width={16}
                   height={16}
                   alt={item.value}
-                  className={`${mode === item.value && "active-theme"}`}
+                  className={`invert-0 dark:invert`}
                 />
-                <p
-                  className={`body-semibold text-light-500 ${mode === item.value ? "text-primary-500" : "text-dark100_light900"}`}
-                >
-                  {item.label}
-                </p>
+                <p className={`text-dark100_light900`}>{item.label}</p>
               </MenubarItem>
             )
           )}

@@ -24,7 +24,7 @@ const Navbar = async () => {
   return (
     <nav className="flex-between light-border fixed left-1/2 top-2 z-50 w-[95%] max-w-6xl -translate-x-1/2 gap-5 rounded-xl border bg-zinc-300/40 px-4 py-2 shadow-light-300 backdrop-blur-md backdrop-saturate-150 dark:bg-dark-4/70 dark:shadow-none max-sm:w-[98%] max-sm:gap-1 sm:px-7">
       <Link href="/">
-        <div className="flex min-w-32 items-center gap-1">
+        <div className="flex sm:min-w-32 min-w-11 items-center gap-1">
           <Image
             src="/site-logo.svg"
             width={28}

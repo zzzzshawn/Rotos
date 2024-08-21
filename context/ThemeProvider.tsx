@@ -14,7 +14,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function Themeprovider({ children }: { children: React.ReactNode }) {
-  const [mode, setMode] = useState("dark"); // useState to handle theme
+  const [mode, setMode] = useState(""); // useState to handle theme
 
   const handleThemeChange = () => {
     if (

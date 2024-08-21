@@ -28,7 +28,6 @@ const NavContent = () => {
 
   return (
     <section className="light-border mt-5 flex flex-col gap-2 border-t pt-4">
-
       <h2 className="text-dark300_light900 base-bold">Discover</h2>
       {mobileSidebarLinks.map((item) => {
         // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
@@ -88,20 +87,19 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
         side="left"
         className="background-light850_dark100 border-none"
       >
-
         <Link href="/" className="flex items-center gap-1">
           {/* shows logo in mobile nav */}
           <Image
-            src="/assets/images/site-logo.svg"
-            width={23}
-            height={23}
-            alt="DevThreads"
+            src="/site-logo.svg"
+            width={28}
+            height={28}
+            alt="Rotōs"
+            className="size-9 invert-0 dark:invert"
           />
-          <p className="h2-bold text-dark100_light900 font-spaceGrotesk">
-            Dev <span className="text-primary-500">Threads</span>
+          <p className="h2-bold font-spaceGrotesk text-dark-100 dark:text-light-900 ">
+            Rotōs
           </p>
         </Link>
-
 
         <SignedIn>
           <SheetClose asChild>
@@ -124,21 +122,16 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
           </SheetClose>
         </SignedIn>
 
-
-
         <div className="flex h-full flex-col justify-start gap-8 pb-10 ">
           <SheetClose asChild className="">
             {/* nav links */}
             <NavContent />
           </SheetClose>
 
-
           <SignedIn>
             {tags && (
               <div className=" light-border border-t pt-5">
-                <h2 className="text-dark300_light900 base-bold">
-                  Tags
-                </h2>
+                <h2 className="text-dark300_light900 base-bold">Tags</h2>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {tags?.map((tag: any) => (
                     <SheetClose asChild key={tag._id}>
@@ -156,8 +149,6 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
               </div>
             )}
           </SignedIn>
-
-
 
           <SignedOut>
             {/* if user is not logged in the content inside this will show */}
@@ -181,8 +172,6 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
               </SheetClose>
             </div>
           </SignedOut>
-
-
         </div>
       </SheetContent>
     </Sheet>
