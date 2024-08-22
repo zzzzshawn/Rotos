@@ -124,7 +124,6 @@ const QuestionCard = async(props: QuestionProps) => {
           downvotes={downvotes?.length}
           hasdownVoted={downvotes?.includes(mongoUser._id)}
           hasSaved={mongoUser?.saved.includes(_id)}
-        
         />
       </div>
     </div>

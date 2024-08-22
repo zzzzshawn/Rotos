@@ -18,13 +18,14 @@ interface Props {
   type: string;
   itemId: string;
   userId?: string;
-  answers: number;
-  views: number;
+  answers?: number;
+  views?: number;
   upvotes: number;
   hasupVoted: boolean;
   downvotes: number;
   hasdownVoted: boolean;
   hasSaved?: boolean;
+  isAnswer?: boolean;
 }
 
 const Votes = ({
@@ -38,6 +39,7 @@ const Votes = ({
   hasupVoted,
   hasdownVoted,
   hasSaved,
+  isAnswer,
 }: Props) => {
   const { toast } = useToast();
   const pathname = usePathname();
@@ -126,12 +128,12 @@ const Votes = ({
     }
   };
 
-  useEffect(() => {
-    viewQuestion({
-      questionId: JSON.parse(itemId),
-      userId: userId ? JSON.parse(userId) : undefined,
-    });
-  }, [itemId, userId, pathname, router]);
+  // useEffect(() => {
+  //   viewQuestion({
+  //     questionId: JSON.parse(itemId),
+  //     userId: userId ? JSON.parse(userId) : undefined,
+  //   });
+  // }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
@@ -165,7 +167,8 @@ const Votes = ({
             onClick={() => handleVote("downvote")}
           />
         </div>
-        <div className="flex w-max  items-center gap-1.5 max-sm:justify-start">
+        {!isAnswer &&
+          (<div className="flex w-max  items-center gap-1.5 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"
@@ -187,7 +190,7 @@ const Votes = ({
             title=""
             textStyles=" small-medium text-dark400_light800  "
           />
-        </div>
+        </div>)}
         {/* <div className="flex-center gap-1.5">
           <Image
             src={

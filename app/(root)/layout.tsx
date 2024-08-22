@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <LeftSideBar />
 
         <section className="light-border flex min-h-screen  flex-1 flex-col border-r pb-6 pt-16 max-md:pb-14 ">
-          <div className="w-full max-w-3xl">{children}</div>
+          <div className="w-full max-w-3xl font-spaceGrotesk">{children}</div>
         </section>
 
         <RightSideBar />

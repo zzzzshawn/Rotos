@@ -9,10 +9,10 @@ import { getTimestamp } from "@/lib/utils";
 import { auth, SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
+import Viewed from "@/components/shared/Viewed";
 
 export const metadata: Metadata = {
   title: "Question details",
@@ -29,10 +29,10 @@ interface QuestionDetailsProps {
 const page = async ({ params, searchParams }: QuestionDetailsProps) => {
   const result = await getQuestionById({ questionId: params.id });
   const { userId: clerkId } = auth(); // user from clerkdb
-  let mongoUser;
+  let mongoUser: any;
   if (clerkId) {
     mongoUser = await getUserById({ userId: clerkId });
-   // gets user from mongodb
+    // gets user from mongodb
   }
 
   return (
@@ -63,7 +63,6 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
         </h2>
       </div>
 
-
       <ParseHTML data={result.content} />
       <div className="flex-between light-border-2 w-full border-b pb-3">
         <div className="flex w-2/3  flex-wrap gap-2">
@@ -88,6 +87,10 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
             downvotes={result.downvotes.length}
             hasdownVoted={result.downvotes.includes(mongoUser?._id)}
             hasSaved={mongoUser?.saved.includes(result._id)}
+          />
+          <Viewed
+            itemId={JSON.stringify(result._id)}
+            userId={JSON.stringify(mongoUser?._id)}
           />
         </div>
       </div>

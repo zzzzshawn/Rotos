@@ -4,6 +4,7 @@ import Metric from "../shared/Metric";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { SignedIn } from "@clerk/nextjs";
 import EditDeleteAction from "../shared/EditDeleteAction";
+import Image from "next/image";
 
 interface Props {
   clerkId?: string | null;
@@ -35,15 +36,19 @@ const AnswerCard = ({
   return (
     <div className="">
       <div className="flex-between mt-6 w-full flex-wrap gap-3 px-4">
-        <Metric
-          imgUrl={author.picture}
-          alt="user avatar"
-          value={author.name}
-          title={` • asked ${getTimestamp(createdAt)}`}
+        <Link
           href={`/profile/${author.clerkId}`}
-          textStyles="body-medium text-dark400_light700"
-          isAuthor
-        />
+          className="flex items-center gap-2  px-2"
+        >
+          <Image
+            src={author.picture}
+            height={22}
+            width={22}
+            alt={`author`}
+            className={`object-contain rounded-full`}
+          />
+          <p className="text-dark100_light900">{author.name}</p>
+        </Link>
 
         <div className="flex-center gap-3">
           <Metric
