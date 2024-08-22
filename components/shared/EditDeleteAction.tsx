@@ -50,8 +50,8 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
         <Image
           src="/assets/icons/edit.svg"
           alt="Edit"
-          width={14}
-          height={14}
+          width={18}
+          height={18}
           className="cursor-pointer object-contain"
           onClick={handleEdit}
         />
@@ -59,8 +59,8 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
       <Image
         src="/assets/icons/trash.svg"
         alt="Delele"
-        width={14}
-        height={14}
+        width={18}
+        height={18}
         className="cursor-pointer object-contain"
         onClick={handleDelete}
       />

@@ -55,6 +55,10 @@
     @apply dark:text-zinc-500 text-zinc-500
   }
 
+  .text-red{
+    color:red;
+  }
+
   .text-light900_dark100 {
     @apply dark:text-dark-100 text-light-900 !important;
   }
@@ -222,3 +226,5 @@
     );
   }
 }
+
+

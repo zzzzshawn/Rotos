@@ -29,7 +29,19 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
         <h1 className="text-xl ">{user.name}</h1>
         <p className="text-variant">Stats - {reputation}</p>
       </div>
-      <div className="relative h-[200px]  w-full bg-dark-4/10 dark:bg-dark-3">
+      <div className="flex-center relative h-[200px] w-full bg-dark-4/10 dark:bg-dark-3">
+        <div className="flex min-w-11 items-center gap-1 sm:min-w-32">
+          <Image
+            src="/site-logo.svg"
+            width={40}
+            height={40}
+            alt="Rotōs"
+            className="invert-0 dark:invert max-sm:size-16 sm:size-20 md:size-24"
+          />
+          <p className=" font-spaceGrotesk font-bold text-dark-100 dark:text-light-900 max-sm:text-4xl sm:text-5xl md:text-6xl">
+            Rotōs
+          </p>
+        </div>
         <div className="absolute bottom-[-30%] left-5">
           {clerkId === params.id ? (
             <SignedIn>

@@ -22,7 +22,7 @@ const Community = async ({ searchParams }: SearchParamsProps) => {
   });
 
   return (
-    <div className="px-6 sm:px-12">
+    <div className="px-6 sm:px-12 ">
       <div className="light-border-2 mt-2 flex items-center justify-between gap-5 border-b  py-3 sm:items-center">
         {/* <LocalSearchbar
           route="/"

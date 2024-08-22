@@ -150,7 +150,7 @@ const Votes = ({
             onClick={() => handleVote("upvote")}
           />
           <div className="flex-center min-w-[18px] rounded-sm">
-            <p className=" text-dark400_light900 text-[13px]">{totalVotes}</p>
+            <p className={`${totalVotes > 0 ? "text-green-400" : "text-red"}  text-[13px] font-semibold ${totalVotes === 0 && "text-dark400_light900"}`}>{totalVotes}</p>
           </div>
           <Image
             src={

@@ -32,7 +32,7 @@ const Navbar = async () => {
             alt="Rotōs"
             className="size-9 invert-0 dark:invert"
           />
-          <p className="h2-bold max-sm::hidden font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+          <p className="text-2xl max-sm::hidden font-spaceGrotesk text-dark-100 dark:text-light-900 max-sm:hidden">
             Rotōs
           </p>
         </div>

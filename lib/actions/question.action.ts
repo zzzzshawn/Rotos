@@ -250,6 +250,8 @@ export const deleteQuestion = async (params: DeleteQuestionParams) => {
       { $pull: { questions: questionId } }
     );
 
+    
+
     revalidatePath(path);
   } catch (error) {
     console.log(error);
