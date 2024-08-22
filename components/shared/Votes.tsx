@@ -135,8 +135,8 @@ const Votes = ({
 
   return (
     <div className="flex gap-5">
-      <div className="flex gap-1.5">
-        <div className="flex-center light-border-2 gap-1 rounded-md border p-1 px-2">
+      <div className="flex gap-1.5 md:gap-2.5">
+        <div className="flex-center light-border-2 gap-1 rounded-md border p-1 px-2 md:px-3">
           <Image
             src={
               hasupVoted

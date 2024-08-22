@@ -23,7 +23,7 @@ const Metric = ({
 }: MetricProps) => {
   // used metric component here like this, bcuz metrics can be user or likes,upvotes. if its likes, upvotes then no need for it to be a llink, if author it needs to be a link to go to author profile
   const MetricContent = (
-    <div className="light-border-2 flex items-center justify-center gap-1 rounded-md border p-1 px-2">
+    <div className="light-border-2 flex items-center justify-center gap-1 rounded-md border p-1 px-2 md:px-3">
       <Image
         src={imgUrl}
         height={22}
