@@ -1,10 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import RenderTag from "../shared/RenderTag";
-import Metric from "../shared/Metric";
-import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
-import { SignedIn } from "@clerk/nextjs";
+import { getTimestamp } from "@/lib/utils";
+import { auth, SignedIn } from "@clerk/nextjs";
 import EditDeleteAction from "../shared/EditDeleteAction";
+import Image from "next/image";
+import Votes from "../shared/Votes";
+import { getUserById } from "@/lib/actions/user.action";
 
 interface QuestionProps {
   _id: string;
@@ -19,14 +21,15 @@ interface QuestionProps {
     name: string;
     picture: string;
   };
-  upvotes: number[];
+  upvotes: any[];
+  downvotes: any[];
   views: number;
   answers: Array<object>;
   createdAt: Date;
   clerkId?: string | null;
 }
 
-const QuestionCard = (props: QuestionProps) => {
+const QuestionCard = async(props: QuestionProps) => {
   const {
     _id,
     clerkId,
@@ -34,26 +37,34 @@ const QuestionCard = (props: QuestionProps) => {
     tags,
     author,
     upvotes,
+    downvotes,
     views,
     answers,
     createdAt,
   } = props;
 
   const showActionButtons = clerkId && clerkId === author.clerkId;
+  const { userId} = auth(); // user from clerkdb
+  let mongoUser;
+  if (userId) {
+    mongoUser = await getUserById({ userId });
+   // gets user from mongodb
+  }
 
   return (
     <div className="card-wrapper light-border-2 border-b px-6 pb-6 pt-5 xs:mt-1 sm:px-10 ">
-      <div className="flex flex-col items-start justify-between gap-5">
+      <div className="flex flex-col items-start justify-between gap-4">
         <div className="flex-between w-full">
-          <Metric
-            imgUrl={author.picture}
-            alt="user"
-            value={author.name}
-            title={``}
-            href={`/profile/${author.clerkId}`}
-            isAuthor
-            textStyles="text-dark400_light700  "
-          />
+          <Link href={`/profile/${author.clerkId}`} className="flex items-center gap-2  px-2" >
+            <Image
+              src={author.picture}
+              height={22}
+              width={22}
+              alt={`author`}
+              className={`object-contain rounded-full`}
+            />
+            <p className="text-dark100_light900">{author.name}</p>
+          </Link>
           <span className="subtle-regular text-dark400_light700 mt-2 line-clamp-1 flex">
             {getTimestamp(createdAt)}
           </span>
@@ -73,13 +84,13 @@ const QuestionCard = (props: QuestionProps) => {
         </div>
       </div>
 
-      <div className="flex-between mt-6 w-full">
-        <div className="flex w-2/3  flex-wrap gap-2">
+      <div className="md:flex-between flex-col md:flex-row flex gap-2 mt-6 w-full">
+        <div className="flex md:w-2/3  flex-wrap gap-2">
           {tags.map((tag) => (
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
         </div>
-        <div className="flex w-max  items-center justify-center gap-2 max-sm:justify-start">
+        {/* <div className="flex w-max  items-center justify-center gap-2 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"
@@ -101,7 +112,20 @@ const QuestionCard = (props: QuestionProps) => {
             title=""
             textStyles=" small-medium text-dark400_light800  "
           />
-        </div>
+        </div> */}
+        <Votes 
+          type="Question"
+          itemId={JSON.stringify(_id)}
+          userId={JSON.stringify(mongoUser._id)}
+          answers={answers.length}
+          views={views}
+          upvotes={upvotes.length}
+          hasupVoted={upvotes.includes(mongoUser._id)}
+          downvotes={downvotes?.length}
+          hasdownVoted={downvotes?.includes(mongoUser._id)}
+          hasSaved={mongoUser?.saved.includes(_id)}
+        
+        />
       </div>
     </div>
   );

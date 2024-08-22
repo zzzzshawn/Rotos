@@ -23,13 +23,13 @@ const Metric = ({
 }: MetricProps) => {
   // used metric component here like this, bcuz metrics can be user or likes,upvotes. if its likes, upvotes then no need for it to be a llink, if author it needs to be a link to go to author profile
   const MetricContent = (
-    <div className="light-border-2 flex items-center justify-center gap-1 rounded-md border p-1 px-3">
+    <div className="light-border-2 flex items-center justify-center gap-1 rounded-md border p-1 px-2">
       <Image
         src={imgUrl}
         height={22}
         width={22}
         alt={alt}
-        className={`object-contain ${href ? "rounded-full" : ""} `}
+        className={`object-contain ${href ? "rounded-full" : ""} invert dark:invert-0 `}
       />
 
       <p
@@ -49,13 +49,13 @@ const Metric = ({
   //   used if bcuz if there is href attr for Metric component (i.e: if metric is user) i want it to be clickable, hence <Link>
   if (href) {
     return (
-      <Link href={href} className="flex-center cursor-pointer gap-1">
+      <Link href={href} className="flex-center cursor-pointer">
         {MetricContent}
       </Link>
     );
   }
 
-  return <div className="flex-center flex-wrap gap-1 ">{MetricContent}</div>;
+  return <div className="flex-center flex-wrap ">{MetricContent}</div>;
 };
 
 export default Metric;

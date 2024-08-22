@@ -18,8 +18,8 @@ interface Props {
   type: string;
   itemId: string;
   userId?: string;
-  answers?: number;
-  views?: number;
+  answers: number;
+  views: number;
   upvotes: number;
   hasupVoted: boolean;
   downvotes: number;
@@ -135,8 +135,8 @@ const Votes = ({
 
   return (
     <div className="flex gap-5">
-      <div className="flex-center gap-2.5">
-        <div className="flex-center light-border-2 gap-1.5 rounded-md border px-3 p-1">
+      <div className="flex gap-1.5">
+        <div className="flex-center light-border-2 gap-1 rounded-md border p-1 px-2">
           <Image
             src={
               hasupVoted
@@ -165,7 +165,7 @@ const Votes = ({
             onClick={() => handleVote("downvote")}
           />
         </div>
-        <div className="flex w-max  items-center gap-2 max-sm:justify-start">
+        <div className="flex w-max  items-center gap-1.5 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"
@@ -207,7 +207,6 @@ const Votes = ({
             </p>
           </div>
         </div> */}
-      </div>
       {type === "Question" && (
         <Image
           src={
@@ -222,6 +221,7 @@ const Votes = ({
           onClick={handleSave}
         />
       )}
+      </div>
     </div>
   );
 };

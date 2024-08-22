@@ -1,12 +1,11 @@
 import Answer from "@/components/forms/Answer";
 import AllAnswers from "@/components/shared/AllAnswers";
-import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 import Votes from "@/components/shared/Votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
-import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
+import { getTimestamp } from "@/lib/utils";
 import { auth, SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -32,7 +31,8 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
   const { userId: clerkId } = auth(); // user from clerkdb
   let mongoUser;
   if (clerkId) {
-    mongoUser = await getUserById({ userId: clerkId }); // gets user from mongodb
+    mongoUser = await getUserById({ userId: clerkId });
+   // gets user from mongodb
   }
 
   return (
@@ -54,35 +54,15 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
               {result.author.name}
             </p>
           </Link>
-          <Metric
-            imgUrl="/assets/icons/clock.svg"
-            alt="clock"
-            value={` asked ${getTimestamp(result.createdAt)}`}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
+          <span className="subtle-regular text-dark400_light700 mt-2 line-clamp-1 flex">
+            {getTimestamp(result.createdAt)}
+          </span>
         </div>
         <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">
           {result.title}
         </h2>
       </div>
 
-      <div className="mb-2 mt-5 flex flex-wrap gap-4 sm:mb-5">
-        <Metric
-          imgUrl="/assets/icons/message.svg"
-          alt="answers"
-          value={formatAndDivideNumber(result.answers.length)}
-          title=" "
-          textStyles=" small-medium text-dark400_light800  "
-        />
-        <Metric
-          imgUrl="/assets/icons/eye.svg"
-          alt="eye"
-          value={formatAndDivideNumber(result.views)}
-          title=""
-          textStyles=" small-medium text-dark400_light800  "
-        />
-      </div>
 
       <ParseHTML data={result.content} />
       <div className="flex-between light-border-2 w-full border-b pb-3">

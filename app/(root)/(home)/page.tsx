@@ -45,6 +45,8 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     });
   }
 
+  console.log(result.questions)
+
   return (
     <div className="px-6 sm:px-12">
       {/* <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -94,6 +96,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
               tags={question.tags}
               author={question.author}
               upvotes={question.upvotes}
+              downvotes={question.downvotes}
               views={question.views}
               answers={question.answers}
               createdAt={question.createdAt}
