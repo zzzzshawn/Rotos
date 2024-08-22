@@ -38,6 +38,9 @@ const Votes = ({
   const pathname = usePathname();
   const router = useRouter();
 
+  const totalVotes = - formatAndDivideNumber(downvotes - upvotes )
+
+
   const handleSave = async () => {
     if (userId) {
       await toggleSaveQuestion({
@@ -56,7 +59,7 @@ const Votes = ({
 
     return toast({
       title: "Please login to save questions",
-    })
+    });
   };
 
   const handleVote = async (action: string) => {
@@ -129,26 +132,38 @@ const Votes = ({
   return (
     <div className="flex gap-5">
       <div className="flex-center gap-2.5">
-        <div className="flex-center gap-1.5">
+        <div className="flex-center light-border-2 gap-1.5 rounded-md border p-1">
           <Image
             src={
               hasupVoted
                 ? "/assets/icons/upvoted.svg"
                 : "/assets/icons/upvote.svg"
             }
-            width={18}
-            height={18}
-            className="cursor-pointer"
+            width={22}
+            height={22}
+            className={`cursor-pointer ${!hasupVoted && "invert dark:invert-0"}`}
             alt="upvote"
             onClick={() => handleVote("upvote")}
           />
-          <div className="flex-center background-light700_dark400 min-w-[18px] rounded-sm p-1 ">
-            <p className="subtle-medium text-dark400_light900">
-              {formatAndDivideNumber(upvotes)}
+          <div className="flex-center rounded-sm min-w-[15px]">
+            <p className=" text-[13px] text-dark400_light900">
+              {totalVotes}
             </p>
           </div>
+          <Image
+            src={
+              hasdownVoted
+                ? "/assets/icons/downvoted.svg"
+                : "/assets/icons/downvote.svg"
+            }
+            width={22}
+            height={22}
+            className={`cursor-pointer ${!hasdownVoted && "invert dark:invert-0"}`}
+            alt="downvote"
+            onClick={() => handleVote("downvote")}
+          />
         </div>
-        <div className="flex-center gap-1.5">
+        {/* <div className="flex-center gap-1.5">
           <Image
             src={
               hasdownVoted
@@ -157,7 +172,7 @@ const Votes = ({
             }
             width={18}
             height={18}
-            className="cursor-pointer"
+            className={`cursor-pointer ${!hasdownVoted && "invert dark:invert-0"}`}
             alt="downvote"
             onClick={() => handleVote("downvote")}
           />
@@ -166,7 +181,7 @@ const Votes = ({
               {formatAndDivideNumber(downvotes)}
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
       {type === "Question" && (
         <Image
@@ -175,9 +190,9 @@ const Votes = ({
               ? "/assets/icons/star-filled.svg"
               : "/assets/icons/star-red.svg"
           }
-          width={18}
-          height={18}
-          className="cursor-pointer"
+          width={22}
+          height={22}
+          className={`cursor-pointer ${!hasSaved && "invert dark:invert-0"}`}
           alt="star"
           onClick={handleSave}
         />
