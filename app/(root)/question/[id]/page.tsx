@@ -101,6 +101,8 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
             type="Question"
             itemId={JSON.stringify(result._id)}
             userId={JSON.stringify(mongoUser?._id)}
+            answers={result.answers.length}
+            views={result.views}
             upvotes={result.upvotes.length}
             hasupVoted={result.upvotes.includes(mongoUser?._id)}
             downvotes={result.downvotes.length}

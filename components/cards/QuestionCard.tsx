@@ -79,7 +79,7 @@ const QuestionCard = (props: QuestionProps) => {
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
         </div>
-        <div className="flex w-max  items-center gap-3 max-sm:justify-start">
+        <div className="flex w-max  items-center justify-center gap-2 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"

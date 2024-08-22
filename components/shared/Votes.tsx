@@ -12,11 +12,14 @@ import {
 import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { viewQuestion } from "@/lib/actions/interaction.action";
+import Metric from "./Metric";
 
 interface Props {
   type: string;
   itemId: string;
   userId?: string;
+  answers?: number;
+  views?: number;
   upvotes: number;
   hasupVoted: boolean;
   downvotes: number;
@@ -28,6 +31,8 @@ const Votes = ({
   type,
   itemId,
   userId,
+  answers,
+  views,
   upvotes,
   downvotes,
   hasupVoted,
@@ -38,8 +43,7 @@ const Votes = ({
   const pathname = usePathname();
   const router = useRouter();
 
-  const totalVotes = - formatAndDivideNumber(downvotes - upvotes )
-
+  const totalVotes = -formatAndDivideNumber(downvotes - upvotes);
 
   const handleSave = async () => {
     if (userId) {
@@ -132,7 +136,7 @@ const Votes = ({
   return (
     <div className="flex gap-5">
       <div className="flex-center gap-2.5">
-        <div className="flex-center light-border-2 gap-1.5 rounded-md border p-1">
+        <div className="flex-center light-border-2 gap-1.5 rounded-md border px-3 p-1">
           <Image
             src={
               hasupVoted
@@ -145,10 +149,8 @@ const Votes = ({
             alt="upvote"
             onClick={() => handleVote("upvote")}
           />
-          <div className="flex-center rounded-sm min-w-[15px]">
-            <p className=" text-[13px] text-dark400_light900">
-              {totalVotes}
-            </p>
+          <div className="flex-center min-w-[18px] rounded-sm">
+            <p className=" text-dark400_light900 text-[13px]">{totalVotes}</p>
           </div>
           <Image
             src={
@@ -161,6 +163,29 @@ const Votes = ({
             className={`cursor-pointer ${!hasdownVoted && "invert dark:invert-0"}`}
             alt="downvote"
             onClick={() => handleVote("downvote")}
+          />
+        </div>
+        <div className="flex w-max  items-center gap-2 max-sm:justify-start">
+          <Metric
+            imgUrl="/assets/icons/like.svg"
+            alt="upvotes"
+            value={formatAndDivideNumber(totalVotes)}
+            title=""
+            textStyles=" small-medium text-dark400_light800  "
+          />
+          <Metric
+            imgUrl="/assets/icons/message.svg"
+            alt="answers"
+            value={formatAndDivideNumber(answers)}
+            title=""
+            textStyles=" small-medium text-dark400_light800  "
+          />
+          <Metric
+            imgUrl="/assets/icons/eye.svg"
+            alt="eye"
+            value={formatAndDivideNumber(views)}
+            title=""
+            textStyles=" small-medium text-dark400_light800  "
           />
         </div>
         {/* <div className="flex-center gap-1.5">
