@@ -12,7 +12,6 @@ import { AnswerSchema } from "@/lib/validations";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
-import { useTheme } from "@/context/ThemeProvider";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
@@ -77,10 +76,10 @@ const Answer = ({ question, questionId, authorId }: Props) => {
       const aiAnswer = await response.json();
 
       // convert plaintext to html
-      const formatedAnswer = aiAnswer.reply.replace(/\n/g, "<br />");
+      // const formatedAnswer = aiAnswer.reply.replace(/\n/g, "<br />");
       if (editorRef.current) {
         const editor = editorRef.current as any;
-        editor.setContent(formatedAnswer);
+        editor.setContent(aiAnswer.reply);
       }
 
       //  toast notification

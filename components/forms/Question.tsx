@@ -21,7 +21,6 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "@/context/ThemeProvider";
 
 interface Props {
   type?: string;
@@ -224,7 +223,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                       {field.value.map((tag: any) => (
                         <Badge
                           key={tag}
-                          className="subtle-medium background-light800_dark300 text-light400_light500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
+                          className="subtle-medium primary-gradient  text-light400_light500 text-light900_dark100 flex items-center justify-center gap-2 rounded-md border-none p-2 capitalize"
                           onClick={() =>
                             type !== "Edit"
                               ? handleTagRemove(tag, field)
@@ -236,7 +235,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                             <Image
                               src="/assets/icons/close.svg"
                               alt="close"
-                              className="cursor-pointer object-contain invert-0 dark:invert"
+                              className="cursor-pointer object-contain invert dark:invert-0"
                               width={12}
                               height={12}
                             />

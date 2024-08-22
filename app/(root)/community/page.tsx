@@ -35,12 +35,12 @@ const Community = async ({ searchParams }: SearchParamsProps) => {
         <Filter
           filters={UserFilters}
           otherClasses="h-[30px] "
-          containerClasses="flex w"
+          containerClasses="flex"
           // unless you are on a device bigger keep filters hidden
         />
       </div>
       <h1 className="h1-bold text-dark100_light900 mt-5">Community</h1>
-      <section className="mt-5 flex flex-wrap items-start justify-center gap-8">
+      <section className="mt-5  grid w-full grid-cols-2 gap-3 max-sm:gap-1 md:grid-cols-3 ">
         {result.users.length > 0 ? (
           result.users.map((user) => <UserCard key={user._id} user={user} />)
         ) : (

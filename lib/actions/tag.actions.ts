@@ -47,7 +47,7 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
         _id: { $in: interactions[0].tags },
       });
       
-      return populatedTags.slice(0,3);
+      return populatedTags.slice(0,2);
     }
 
     return [];

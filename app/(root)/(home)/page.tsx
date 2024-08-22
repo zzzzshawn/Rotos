@@ -46,7 +46,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
   }
 
   return (
-    <div className="sm:px-12 px-6">
+    <div className="px-6 sm:px-12">
       {/* <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
         <h1 className="h1-bold text-dark100_light900">All Questions</h1>
 
