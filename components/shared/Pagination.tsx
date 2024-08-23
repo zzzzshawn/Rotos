@@ -34,7 +34,7 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
         onClick={() => handleNavigation("prev")}
         className=" hover: flex cursor-pointer items-center justify-center gap-1 "
       >
-        <ChevronLeft className="w-3 text-dark200_light800" />
+        <ChevronLeft className="text-dark200_light800 w-3" />
         <p className="text-dark200_light800 text-base hover:underline">Prev</p>
       </Button>
       <div className="primary-gradient flex items-center justify-center rounded-md px-3.5 py-2">
@@ -48,7 +48,7 @@ const Pagination = ({ pageNumber, isNext }: Props) => {
         <p className="body-medium text-dark200_light800 hover:underline">
           Next
         </p>
-        <ChevronRight className="w-3 text-dark200_light800" />
+        <ChevronRight className="text-dark200_light800 w-3" />
       </Button>
     </div>
   );

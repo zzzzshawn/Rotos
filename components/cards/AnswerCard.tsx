@@ -45,7 +45,7 @@ const AnswerCard = ({
             height={22}
             width={22}
             alt={`author`}
-            className={`object-contain rounded-full`}
+            className={`rounded-full object-contain`}
           />
           <p className="text-dark100_light900">{author.name}</p>
         </Link>

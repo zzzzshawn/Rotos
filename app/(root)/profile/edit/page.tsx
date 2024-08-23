@@ -16,7 +16,7 @@ const ProfileEdit = async ({ params }: ParamsProps) => {
   const mongoUser = await getUserById({ userId });
 
   return (
-    <div className="ppx-6 mt-10 sm:px-24">
+    <div className="mt-10 px-6 sm:px-24">
       <h1 className="h1-bold text-dark100_light900">Edit Profile</h1>
       <div className="mt-9">
         <Profile clerkId={userId} user={JSON.stringify(mongoUser)} />

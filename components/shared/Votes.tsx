@@ -2,16 +2,14 @@
 
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
-import React, { useEffect } from "react";
 import { useToast } from "../ui/use-toast";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   downvoteQuestion,
   upvoteQuestion,
 } from "@/lib/actions/question.action";
 import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import { toggleSaveQuestion } from "@/lib/actions/user.action";
-import { viewQuestion } from "@/lib/actions/interaction.action";
 import Metric from "./Metric";
 import { Check, X } from "lucide-react";
 
@@ -44,7 +42,6 @@ const Votes = ({
 }: Props) => {
   const { toast } = useToast();
   const pathname = usePathname();
-  const router = useRouter();
 
   const totalVotes = -formatAndDivideNumber(downvotes - upvotes);
 
@@ -130,12 +127,6 @@ const Votes = ({
     }
   };
 
-  // useEffect(() => {
-  //   viewQuestion({
-  //     questionId: JSON.parse(itemId),
-  //     userId: userId ? JSON.parse(userId) : undefined,
-  //   });
-  // }, [itemId, userId, pathname, router]);
 
   return (
     <div className="flex gap-5">
@@ -198,25 +189,7 @@ const Votes = ({
             />
           </div>
         )}
-        {/* <div className="flex-center gap-1.5">
-          <Image
-            src={
-              hasdownVoted
-                ? "/assets/icons/downvoted.svg"
-                : "/assets/icons/downvote.svg"
-            }
-            width={18}
-            height={18}
-            className={`cursor-pointer ${!hasdownVoted && "invert dark:invert-0"}`}
-            alt="downvote"
-            onClick={() => handleVote("downvote")}
-          />
-          <div className="flex-center background-light700_dark400 min-w-[18px] rounded-sm p-1 ">
-            <p className="subtle-medium text-dark400_light900">
-              {formatAndDivideNumber(downvotes)}
-            </p>
-          </div>
-        </div> */}
+
         {type === "Question" && (
           <Image
             src={

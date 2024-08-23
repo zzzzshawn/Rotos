@@ -1,7 +1,6 @@
 import QuestionCard from "@/components/cards/QuestionCard";
 import NoResult from "@/components/shared/NoResult";
 import Pagination from "@/components/shared/Pagination";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { getQuestionsByTagId } from "@/lib/actions/tag.actions";
 import { URLProps } from "@/types";
 
@@ -19,15 +18,6 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
         {tagTitle}
       </h1>
 
-      {/* <div className="mt-11 w-full">
-        <LocalSearchbar
-          route={`/tags/${params.id}`}
-          iconPosition="left"
-          imgSrc="/assets/icons/search.svg"
-          placeholder="Search Tag questions"
-          otherClasses="flex-1"
-        />
-      </div> */}
 
       {/* Card section */}
       <div className="mt-5 flex flex-col gap-6">

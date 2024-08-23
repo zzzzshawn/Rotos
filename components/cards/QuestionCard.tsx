@@ -29,7 +29,7 @@ interface QuestionProps {
   clerkId?: string | null;
 }
 
-const QuestionCard = async(props: QuestionProps) => {
+const QuestionCard = async (props: QuestionProps) => {
   const {
     _id,
     clerkId,
@@ -44,24 +44,27 @@ const QuestionCard = async(props: QuestionProps) => {
   } = props;
 
   const showActionButtons = clerkId && clerkId === author.clerkId;
-  const { userId} = auth(); // user from clerkdb
+  const { userId } = auth(); // user from clerkdb
   let mongoUser;
   if (userId) {
     mongoUser = await getUserById({ userId });
-   // gets user from mongodb
+    // gets user from mongodb
   }
 
   return (
     <div className="card-wrapper light-border-2 border-b px-6 pb-6 pt-5 xs:mt-1 sm:px-10 ">
       <div className="flex flex-col items-start justify-between gap-4">
         <div className="flex-between w-full">
-          <Link href={`/profile/${author.clerkId}`} className="flex items-center gap-2  px-2" >
+          <Link
+            href={`/profile/${author.clerkId}`}
+            className="flex items-center gap-2  px-2"
+          >
             <Image
               src={author.picture}
               height={22}
               width={22}
               alt={`author`}
-              className={`object-contain rounded-full`}
+              className={`rounded-full object-contain`}
             />
             <p className="text-dark100_light900">{author.name}</p>
           </Link>
@@ -84,8 +87,8 @@ const QuestionCard = async(props: QuestionProps) => {
         </div>
       </div>
 
-      <div className="md:flex-between flex-col md:flex-row flex gap-2 mt-6 w-full">
-        <div className="flex md:w-2/3  flex-wrap gap-2">
+      <div className="md:flex-between mt-6 flex w-full flex-col gap-2 md:flex-row">
+        <div className="flex flex-wrap  gap-2 md:w-2/3">
           {tags.map((tag) => (
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
@@ -113,7 +116,7 @@ const QuestionCard = async(props: QuestionProps) => {
             textStyles=" small-medium text-dark400_light800  "
           />
         </div> */}
-        <Votes 
+        <Votes
           type="Question"
           itemId={JSON.stringify(_id)}
           userId={JSON.stringify(mongoUser?._id)}

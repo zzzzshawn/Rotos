@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ReloadIcon } from "@radix-ui/react-icons";
 import GlobalFilters from "./GlobalFilters";
 import { globalSearch } from "@/lib/actions/general.action";
 import { ChevronRightIcon, Loader } from "lucide-react";

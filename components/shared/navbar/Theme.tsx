@@ -54,7 +54,7 @@ const Theme = () => {
                     localStorage.removeItem("theme");
                   }
                 }}
-                className="text-dark100_light900 flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-4 focus:bg-zinc-200/40"
+                className="text-dark100_light900 flex items-center gap-4 px-2.5 py-2 focus:bg-zinc-200/40 dark:focus:bg-dark-4"
               >
                 <Image
                   src={item.icon}

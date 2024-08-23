@@ -1,7 +1,6 @@
 import UserCard from "@/components/cards/UserCard";
 import Filter from "@/components/shared/Filter";
 import Pagination from "@/components/shared/Pagination";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { UserFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
 import { SearchParamsProps } from "@/types";
@@ -26,14 +25,6 @@ const Community = async ({ searchParams }: SearchParamsProps) => {
   return (
     <div className="px-6 sm:px-12 ">
       <div className="light-border-2 mt-2 flex items-center justify-between gap-5 border-b  py-3 sm:items-center">
-        {/* <LocalSearchbar
-          route="/"
-          iconPosition="left"
-          imgSrc="/assets/icons/search.svg"
-          placeholder="Search for Questions..."
-          otherClasses="flex-1"
-        /> */}
-
         <Filter
           filters={UserFilters}
           otherClasses="h-[30px] "
@@ -41,7 +32,10 @@ const Community = async ({ searchParams }: SearchParamsProps) => {
           // unless you are on a device bigger keep filters hidden
         />
       </div>
+
+
       <h1 className="h1-bold text-dark100_light900 mt-5">Community</h1>
+
       <section className="mt-5  grid w-full grid-cols-2 gap-3 max-sm:gap-1 md:grid-cols-3 ">
         {result.users.length > 0 ? (
           result.users.map((user) => <UserCard key={user._id} user={user} />)
@@ -54,6 +48,8 @@ const Community = async ({ searchParams }: SearchParamsProps) => {
           </div>
         )}
       </section>
+
+      
       <div className="mt-10">
         <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}

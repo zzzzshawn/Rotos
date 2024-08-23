@@ -4,7 +4,6 @@ import QuestionCard from "@/components/cards/QuestionCard";
 
 import { QuestionFilters } from "@/constants/filters";
 
-
 import { SearchParamsProps } from "@/types";
 
 import { auth } from "@clerk/nextjs";
@@ -15,8 +14,8 @@ import { getSavedQuestions } from "@/lib/actions/user.action";
 import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
-  title: 'Collections',
-  description: 'Collections page of Dev Overflow'
+  title: "Collections",
+  description: "Collections page of Dev Overflow",
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {
@@ -31,9 +30,8 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     page: searchParams.page ? +searchParams.page : 1,
   });
 
-
   return (
-    <div className="sm:px-12 px-6 mt-10">
+    <div className="mt-10 px-6 sm:px-12">
       <h1 className="h1-bold text-dark100_light900">Collections</h1>
       <div className="mt-6 flex justify-between gap-2 max-sm:flex-col sm:items-center">
         <LocalSearchbar
@@ -75,7 +73,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
         )}
       </div>
       <div className="mt-10">
-        <Pagination 
+        <Pagination
           pageNumber={searchParams?.page ? +searchParams.page : 1}
           isNext={result.isNext}
         />
