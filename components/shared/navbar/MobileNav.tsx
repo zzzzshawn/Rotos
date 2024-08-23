@@ -27,7 +27,7 @@ const NavContent = () => {
   const pathname = usePathname();
 
   return (
-    <section className="light-border mt-5 flex flex-col gap-2 border-t pt-4">
+    <section className="light-border mt-5 flex flex-col gap-3 border-t pt-4">
       <h2 className="text-dark300_light900 base-bold">Discover</h2>
       {mobileSidebarLinks.map((item) => {
         // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
@@ -50,8 +50,8 @@ const NavContent = () => {
               {/* checks if the link is active using isActive if yes apply needed classes */}
               <Image
                 src={item.imgURL}
-                width={20}
-                height={20}
+                width={30}
+                height={30}
                 alt={item.label}
                 className={`${isActive ? "dark:invert" : "invert-colors"}`}
               />
@@ -85,7 +85,7 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="background-light850_dark100 border-none"
+        className="background-light850_dark100 border-none font-spaceGrotesk"
       >
         <Link href="/" className="flex items-center gap-1">
           {/* shows logo in mobile nav */}

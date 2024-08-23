@@ -2,7 +2,6 @@ import { formatAndDivideNumber } from "@/lib/utils";
 import { BadgeCounts } from "@/types";
 import Image from "next/image";
 
-
 interface StatsCardProps {
   imgUrl: string;
   value: number;
@@ -11,7 +10,9 @@ interface StatsCardProps {
 }
 const StatsCard = ({ imgUrl, value, title, classname }: StatsCardProps) => {
   return (
-    <div className={`light-border-2 background-light900_dark300 flex flex-wrap items-center justify-center gap-4 rounded-md border p-6 ${classname}`}>
+    <div
+      className={`light-border-2 background-light900_dark300 flex flex-wrap items-center justify-center gap-4 rounded-md border p-6 ${classname}`}
+    >
       <Image src={imgUrl} alt={title} width={40} height={50} />
       <div className="flex flex-col items-center justify-center gap-3">
         <p className="paragraph-semibold text-dark200_light900 ">
@@ -34,10 +35,10 @@ const Stats = ({
   totalQuestions,
   totalAnswers,
   badges,
-  reputation
+  reputation,
 }: StatsProps) => {
   return (
-    <div className="mt-10 sm:px-10 px-5">
+    <div className="mt-7 px-5 sm:px-10">
       <div className="mt-5 grid grid-cols-2 gap-5 xs:grid-cols-2 md:grid-cols-3">
         <div className="light-border-2 background-light900_dark300 flex flex-wrap items-center justify-evenly gap-4 rounded-md border p-6 md:row-start-1 md:row-end-3">
           <div className="flex flex-col items-center justify-center gap-3">

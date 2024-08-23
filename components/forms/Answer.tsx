@@ -17,6 +17,7 @@ import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
 import { toast } from "../ui/use-toast";
+import { Loader } from "lucide-react";
 
 interface Props {
   question: string;
@@ -109,7 +110,10 @@ const Answer = ({ question, questionId, authorId }: Props) => {
           onClick={generateAiAnswer}
         >
           {isSubmittingAI ? (
-            <>Generating...</>
+            <>
+              <Loader className="text-light900_dark100 my-2 size-4 animate-spin" />
+              Generating...
+            </>
           ) : (
             <>
               <Image

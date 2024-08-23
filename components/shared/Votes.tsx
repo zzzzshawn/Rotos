@@ -97,7 +97,7 @@ const Votes = ({
 
       return toast({
         title: `Upvote ${!hasupVoted ? "Successful" : "Removed"}`,
-        variant: !hasdownVoted ? "default" : "destructive",
+        variant: !hasupVoted ? "success" : "default",
       });
     }
 
@@ -123,7 +123,7 @@ const Votes = ({
       // show a toast
       return toast({
         title: `Downvote ${!hasdownVoted ? "Successful" : "Removed"}`,
-        variant: !hasdownVoted ? "default" : "destructive",
+        variant: !hasdownVoted ? "destructive" : "default",
       });
     }
   };
@@ -168,7 +168,7 @@ const Votes = ({
           />
         </div>
         {!isAnswer &&
-          (<div className="flex w-max  items-center gap-1.5 max-sm:justify-start">
+          (<div className="flex w-max  items-center gap-1.5 md:gap-2.5 max-sm:justify-start">
           <Metric
             imgUrl="/assets/icons/like.svg"
             alt="upvotes"

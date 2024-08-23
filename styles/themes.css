@@ -12,7 +12,7 @@
   }
 
   .background-light900_dark300 {
-    @apply bg-light-3/20 dark:bg-dark-2/50;
+    @apply bg-light-3/10 dark:bg-dark-2/50;
   }
 
   .background-light800_darkgradient {
@@ -52,7 +52,7 @@
   }
    
   .text-variant{
-    @apply dark:text-zinc-500 text-zinc-500
+    @apply dark:text-zinc-600 text-zinc-400
   }
 
   .text-red{

@@ -35,6 +35,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
     // gets user from mongodb
   }
 
+
   return (
     <div className="mt-8 px-6 sm:px-12">
       <div className="flex-start w-full flex-col">
@@ -100,6 +101,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
           <AllAnswers
             questionId={result._id}
             userId={mongoUser._id}
+            clerkId={mongoUser.clerkId}
             totalAnswers={result.answers.length}
             page={searchParams?.page ? +searchParams?.page : 1}
             filter={searchParams?.filter}

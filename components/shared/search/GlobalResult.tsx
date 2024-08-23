@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import GlobalFilters from "./GlobalFilters";
 import { globalSearch } from "@/lib/actions/general.action";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon, Loader } from "lucide-react";
 
 const GlobalResult = () => {
   const searchParams = useSearchParams();
@@ -79,7 +79,7 @@ const GlobalResult = () => {
 
         {isLoading ? (
           <div className="flex-center flex-col px-5">
-            <ReloadIcon className="text-dark400_light900 my-2 size-10 animate-spin " />
+            <Loader className="text-dark400_light900 my-2 size-10 animate-spin" />
             <p className="text-dark200_light800 body-regular">Searching..</p>
           </div>
         ) : (
@@ -105,7 +105,7 @@ const GlobalResult = () => {
             ) : (
               <div className="flex-center flex-col px-5">
                 <p className="text-dark200_light800 body-regular px-5 py-2.5">
-                  Opps! No result found !
+                  Result not found
                 </p>
               </div>
             )}

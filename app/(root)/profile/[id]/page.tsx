@@ -25,8 +25,8 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
     });
   return (
     <div className="w-full">
-      <div className="text-dark100_light900 mt-1 flex w-full flex-col gap-0.5 px-12 pb-2 pt-4">
-        <h1 className="text-xl ">{user.name}</h1>
+      <div className="text-dark100_light900 mt-1 flex w-full flex-col px-12 pb-2 pt-4">
+        <h1 className="text-lg ">{user.name}</h1>
         <p className="text-variant">Stats - {reputation}</p>
       </div>
       <div className="flex-center relative h-[200px] w-full bg-dark-4/10 dark:bg-dark-3">
@@ -110,7 +110,7 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               </div>
             </div>
             {user.bio && (
-              <p className="paragraph-regular text-dark400_light800 mt-8">
+              <p className="paragraph-regular text-dark400_light800 mt-6">
                 {user.bio}
               </p>
             )}
