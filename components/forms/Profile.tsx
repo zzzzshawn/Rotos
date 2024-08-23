@@ -54,7 +54,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
         updateData: {
           name: values.name,
           username: values.username,
-          portfolioWebsite: values.portfoliowebsite,
+          portfolioWebsite: values.portfoliowebsite || undefined,
           location: values.location,
           bio: values.bio,
         },
@@ -64,11 +64,10 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
       // back to profile pages
       router.back();
 
-        toast({
-          icon: <Check className="text-green"/>,
-          title: `Profile updated`,
-        });
-        
+      toast({
+        icon: <Check className="text-green" />,
+        title: `Profile updated`,
+      });
     } catch (error) {
       console.log(error);
     } finally {
@@ -130,9 +129,10 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
               <FormControl>
                 <Input
                   type="url"
-                  placeholder="Youe portfolio link"
+                  placeholder="Your portfolio link"
                   className="no-focus paragraph-regular light-border-2 background-light900_dark300 text-dark100_light900 min-h-[56px] border"
                   {...field}
+                  value={field.value || ""} // Convert null/undefined to empty string
                 />
               </FormControl>
               <FormMessage className="text-red-500" />
