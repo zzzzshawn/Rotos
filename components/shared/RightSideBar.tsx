@@ -18,7 +18,7 @@ const RightSideBar = async () => {
             <Link
               href={`/question/${question._id}`}
               key={question._id}
-              className=" flex cursor-pointer items-center justify-between gap-3 rounded-md  p-2 dark:hover:bg-dark-4"
+              className=" flex cursor-pointer items-center justify-between gap-3 rounded-md  p-2 dark:hover:bg-dark-4/60 hover:bg-zinc-200/30"
             >
               <p className="text-dark100_light900 line-clamp-2 w-full text-sm underline underline-offset-4">
                 {question.title}

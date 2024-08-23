@@ -31,6 +31,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     page: searchParams.page ? +searchParams.page : 1,
   });
 
+
   return (
     <div className="sm:px-12 px-6 mt-10">
       <h1 className="h1-bold text-dark100_light900">Collections</h1>

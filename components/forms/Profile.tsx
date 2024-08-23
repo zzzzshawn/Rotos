@@ -19,6 +19,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import { ProfileSchema } from "@/lib/validations";
+import { Check, Loader } from "lucide-react";
 
 interface ProfileProps {
   clerkId: string;
@@ -63,10 +64,11 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
       // back to profile pages
       router.back();
 
-      toast({
-        title: `Profile updated`,
-        description: "Your profile has been updated successfully",
-      });
+        toast({
+          icon: <Check className="text-green"/>,
+          title: `Profile updated`,
+        });
+        
     } catch (error) {
       console.log(error);
     } finally {
@@ -181,9 +183,16 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
           <Button
             disabled={isSubmitting}
             type="submit"
-            className="primary-gradient .text-light900_dark100 w-fit"
+            className="primary-gradient text-light900_dark100 w-fit"
           >
-            {isSubmitting ? "Saving..." : "Save"}
+            {isSubmitting ? (
+              <>
+                <Loader className="text-light900_dark100 my-2 size-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              "Save"
+            )}
           </Button>
         </div>
       </form>

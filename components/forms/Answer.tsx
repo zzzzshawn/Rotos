@@ -17,7 +17,7 @@ import Image from "next/image";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { usePathname } from "next/navigation";
 import { toast } from "../ui/use-toast";
-import { Loader } from "lucide-react";
+import { Check, Loader, X } from "lucide-react";
 
 interface Props {
   question: string;
@@ -85,14 +85,13 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       //  toast notification
       return toast({
+        icon: <Check className="text-green"/>,
         title: `${aiAnswer.reply && "Ai answer generated"}`,
-        description: "Ai answer generated successfully",
       });
     } catch (error: any) {
       return toast({
-        title: `${error?.message}`,
-        variant: "destructive",
-        description: `${error?.code}`,
+        icon: <X className="text-red"/>,
+        title: "Internal error. Try again",
       });
     } finally {
       setIsSubmittingAI(false);

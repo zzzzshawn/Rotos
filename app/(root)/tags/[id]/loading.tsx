@@ -1,18 +1,16 @@
-import { Skeleton } from '@/components/ui/skeleton';
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
   return (
-    <section>
+    <div className="mt-10 px-6 sm:px-12">
       <Skeleton className="h-12 w-52" />
 
-      <Skeleton className="mb-12 mt-11 h-14 w-full" />
-
-      <div className="mt-10 flex flex-col gap-6">
+      <div className="mt-2 flex flex-col gap-2">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
           <Skeleton key={item} className="h-48 w-full rounded-xl" />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

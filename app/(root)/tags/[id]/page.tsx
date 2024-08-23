@@ -12,6 +12,7 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
     searchQuery: searchParams?.q,
   });
 
+
   return (
     <div className="mt-10 px-6 sm:px-12">
       <h1 className="h1-bold text-dark100_light900 light-border-2 border-b">

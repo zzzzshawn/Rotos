@@ -13,6 +13,7 @@ import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import { toggleSaveQuestion } from "@/lib/actions/user.action";
 import { viewQuestion } from "@/lib/actions/interaction.action";
 import Metric from "./Metric";
+import { Check, X } from "lucide-react";
 
 interface Props {
   type: string;
@@ -56,23 +57,24 @@ const Votes = ({
       });
 
       return toast({
-        title: `Question ${
-          !hasSaved ? "Saved in" : "Removed from"
-        } your collection`,
-        variant: !hasSaved ? "default" : "destructive",
+        icon: !hasSaved ? <Check className="text-green"/> : <X className="text-red"/>,
+        title: `${
+          !hasSaved ? "Saved" : "Unsaved"
+        }`,
       });
     }
 
     return toast({
-      title: "Please login to save questions",
+      icon: <X className="text-red"/>,
+      title: "Login to save",
     });
   };
 
   const handleVote = async (action: string) => {
     if (!userId) {
       return toast({
-        title: "Please log in",
-        description: "You must be logged in to perform this action.",
+        icon: <X className="text-red"/>,
+        title: "Login to vote",
       });
     }
 
@@ -96,8 +98,8 @@ const Votes = ({
       }
 
       return toast({
-        title: `Upvote ${!hasupVoted ? "Successful" : "Removed"}`,
-        variant: !hasupVoted ? "success" : "default",
+        icon: !hasupVoted ? <Check className="text-green"/> : <X className="text-red"/>,
+        title: ` ${!hasupVoted ? "Upvoted" : "Vote removed"}`,
       });
     }
 
@@ -122,8 +124,8 @@ const Votes = ({
 
       // show a toast
       return toast({
-        title: `Downvote ${!hasdownVoted ? "Successful" : "Removed"}`,
-        variant: !hasdownVoted ? "destructive" : "default",
+        icon: !hasdownVoted ? <Check className="text-green"/> : <X className="text-red"/>,
+        title: `${!hasdownVoted ? "Downvoted" : "Vote removed"}`,
       });
     }
   };
@@ -152,7 +154,11 @@ const Votes = ({
             onClick={() => handleVote("upvote")}
           />
           <div className="flex-center min-w-[18px] rounded-sm">
-            <p className={`${totalVotes > 0 ? "text-green-400" : "text-red"}  text-[13px] font-semibold ${totalVotes === 0 && "text-dark400_light900"}`}>{totalVotes}</p>
+            <p
+              className={`${totalVotes > 0 ? "text-[#08f71c]" : "text-red"}  text-[13px] font-semibold ${totalVotes === 0 && "text-dark400_light900"}`}
+            >
+              {totalVotes}
+            </p>
           </div>
           <Image
             src={
@@ -167,30 +173,31 @@ const Votes = ({
             onClick={() => handleVote("downvote")}
           />
         </div>
-        {!isAnswer &&
-          (<div className="flex w-max  items-center gap-1.5 md:gap-2.5 max-sm:justify-start">
-          <Metric
-            imgUrl="/assets/icons/like.svg"
-            alt="upvotes"
-            value={formatAndDivideNumber(totalVotes)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-          <Metric
-            imgUrl="/assets/icons/message.svg"
-            alt="answers"
-            value={formatAndDivideNumber(answers)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-          <Metric
-            imgUrl="/assets/icons/eye.svg"
-            alt="eye"
-            value={formatAndDivideNumber(views)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-        </div>)}
+        {!isAnswer && (
+          <div className="flex w-max  items-center gap-1.5 max-sm:justify-start md:gap-2.5">
+            <Metric
+              imgUrl="/assets/icons/like.svg"
+              alt="upvotes"
+              value={formatAndDivideNumber(totalVotes)}
+              title=""
+              textStyles=" small-medium text-dark400_light800  "
+            />
+            <Metric
+              imgUrl="/assets/icons/message.svg"
+              alt="answers"
+              value={formatAndDivideNumber(answers)}
+              title=""
+              textStyles=" small-medium text-dark400_light800  "
+            />
+            <Metric
+              imgUrl="/assets/icons/eye.svg"
+              alt="eye"
+              value={formatAndDivideNumber(views)}
+              title=""
+              textStyles=" small-medium text-dark400_light800  "
+            />
+          </div>
+        )}
         {/* <div className="flex-center gap-1.5">
           <Image
             src={
@@ -210,20 +217,20 @@ const Votes = ({
             </p>
           </div>
         </div> */}
-      {type === "Question" && (
-        <Image
-          src={
-            hasSaved
-              ? "/assets/icons/star-filled.svg"
-              : "/assets/icons/star-red.svg"
-          }
-          width={22}
-          height={22}
-          className={`cursor-pointer ${!hasSaved && "invert dark:invert-0"}`}
-          alt="star"
-          onClick={handleSave}
-        />
-      )}
+        {type === "Question" && (
+          <Image
+            src={
+              hasSaved
+                ? "/assets/icons/star-filled.svg"
+                : "/assets/icons/star-red.svg"
+            }
+            width={22}
+            height={22}
+            className={`cursor-pointer ${!hasSaved && "invert dark:invert-0"}`}
+            alt="star"
+            onClick={handleSave}
+          />
+        )}
       </div>
     </div>
   );

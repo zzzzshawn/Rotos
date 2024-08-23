@@ -5,6 +5,7 @@ import { toast } from "../ui/use-toast";
 import Image from "next/image";
 import { deleteQuestion } from "@/lib/actions/question.action";
 import { deleteAnswer } from "@/lib/actions/answer.action";
+import { Check } from "lucide-react";
 
 
 
@@ -29,18 +30,16 @@ const EditDeleteAction = ({ type, itemId }: Props) => {
       await deleteQuestion({ questionId: JSON.parse(itemId), path: pathname });
 
       toast({
-        title: ` Question Deleted `,
-        variant: 'destructive',
-        description: 'Your question has been deleted successfully'
+        icon: <Check className="text-green"/>,
+        title: ` Deleted `,
       });
     } else if (type === 'Answer') {
       // delete Answer
       await deleteAnswer({ answerId: JSON.parse(itemId), path: pathname });
 
       toast({
-        title: `Answer Deleted `,
-        variant: 'destructive',
-        description: 'Your answer has been deleted successfully'
+        icon: <Check className="text-green"/>,
+        title: ` Deleted `,
       });
     }
   };

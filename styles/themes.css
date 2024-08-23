@@ -59,6 +59,10 @@
     color:red;
   }
 
+  .text-green{
+    color: #08f71c;
+  }
+
   .text-light900_dark100 {
     @apply dark:text-dark-100 text-light-900 !important;
   }

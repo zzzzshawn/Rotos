@@ -3,7 +3,6 @@
 import {
   Toast,
   ToastClose,
-  ToastDescription,
   ToastProvider,
   ToastTitle,
   ToastViewport,
@@ -15,14 +14,12 @@ export function Toaster() {
 
   return (
     <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
+      {toasts.map(function ({ id, title, icon, description, action, ...props }) {
         return (
           <Toast key={id} {...props} className="h-10">
-            <div className="grid gap-1">
+            <div className="flex items-center gap-1">
+              {icon && <>{icon}</>}
               {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
             </div>
             {action}
             <ToastClose />

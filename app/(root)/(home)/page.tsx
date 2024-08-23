@@ -44,8 +44,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
       page: searchParams.page ? +searchParams.page : 1,
     });
   }
-
-  console.log(result.questions)
+  
 
   return (
     <div className="px-6 sm:px-12">

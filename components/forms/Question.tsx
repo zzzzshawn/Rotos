@@ -21,6 +21,7 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
 import { usePathname, useRouter } from "next/navigation";
+import { Loader } from "lucide-react";
 
 interface Props {
   type?: string;
@@ -260,7 +261,19 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
           disabled={isSubmitting}
         >
           {isSubmitting ? (
-            <>{type === "Edit" ? "Editing..." : "Posting..."}</>
+            <>
+              {type === "Edit" ? (
+                <>
+                  <Loader className="text-light900_dark100 my-2 size-4 animate-spin" />
+                  Editing...
+                </>
+              ) : (
+                <>
+                  <Loader className="text-light900_dark100 my-2 size-4 animate-spin" />
+                  Posting...
+                </>
+              )}
+            </>
           ) : (
             <>{type === "Edit" ? "Edit question" : "Post question"}</>
           )}

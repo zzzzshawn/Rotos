@@ -23,9 +23,10 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
     await getUserInfo({
       userId: params.id,
     });
+
   return (
     <div className="w-full">
-      <div className="text-dark100_light900 mt-1 flex w-full flex-col px-12 pb-2 pt-4">
+      <div className="text-dark100_light900 mt-1 flex w-full flex-col px-6 pb-2 pt-4 sm:px-12">
         <h1 className="text-lg ">{user.name}</h1>
         <p className="text-variant">Stats - {reputation}</p>
       </div>

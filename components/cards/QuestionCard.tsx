@@ -116,13 +116,13 @@ const QuestionCard = async(props: QuestionProps) => {
         <Votes 
           type="Question"
           itemId={JSON.stringify(_id)}
-          userId={JSON.stringify(mongoUser._id)}
+          userId={JSON.stringify(mongoUser?._id)}
           answers={answers.length}
           views={views}
           upvotes={upvotes.length}
-          hasupVoted={upvotes.includes(mongoUser._id)}
+          hasupVoted={upvotes.includes(mongoUser?._id)}
           downvotes={downvotes?.length}
-          hasdownVoted={downvotes?.includes(mongoUser._id)}
+          hasdownVoted={downvotes?.includes(mongoUser?._id)}
           hasSaved={mongoUser?.saved.includes(_id)}
         />
       </div>
