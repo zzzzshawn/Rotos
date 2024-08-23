@@ -25,29 +25,13 @@ const StatsCard = ({ imgUrl, value, title, classname }: StatsCardProps) => {
 };
 
 interface StatsProps {
-  totalQuestions: number;
-  totalAnswers: number;
   badges: BadgeCounts;
 }
 
-const Stats = ({ totalQuestions, totalAnswers, badges }: StatsProps) => {
+const Stats = ({ badges }: StatsProps) => {
   return (
-    <div className="mt-7 px-5 sm:px-10">
+    <div className="mt-3 px-5 sm:px-10">
       <div className="mt-5 grid grid-cols-2 gap-4 max-sm:gap-2 xs:grid-cols-2 md:grid-cols-4">
-        {/* <div className="light-border-2 background-light900_dark300 flex flex-col gap-4 rounded-md border p-6 md:row-start-1 md:row-end-3">
-          <div className="flex items-center justify-center gap-3">
-            <p className="paragraph-semibold text-dark200_light900 ">
-              {formatAndDivideNumber(totalQuestions)}
-            </p>
-            <p className="body-medium text-dark400_light700">Questions</p>
-          </div>
-          <div className="flex items-center justify-center gap-3">
-            <p className="paragraph-semibold text-dark200_light900 ">
-              {formatAndDivideNumber(totalAnswers)}
-            </p>
-            <p className="body-medium text-dark400_light700">Answers</p>
-          </div>
-        </div> */}
         {/* show badges */}
         <StatsCard
           imgUrl="/assets/icons/gold-medal.svg"

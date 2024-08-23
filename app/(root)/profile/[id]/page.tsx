@@ -60,13 +60,13 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               />
             </SignedIn>
           ) : (
-            <div className="overflow-hidden w-[140px] h-[140px] rounded-full">
+            <div className="size-[140px] overflow-hidden rounded-full">
               <Image
                 src={user?.picture}
                 alt="profile"
                 width={140}
                 height={140}
-                className="object-cover w-full h-full"
+                className="size-full object-cover"
               />
             </div>
           )}
@@ -120,13 +120,12 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
           </div>
         </div>
       </div>
+      <div className="light-border-2 text-dark100_light900 mx-5 mt-2 flex w-full flex-col items-start justify-center border-t px-4 pt-5  sm:mx-10">
+        <p className="">Total questions: {totalQuestions}</p>
+        <p className="">Total answers: {totalAnswers}</p>
+      </div>
       {/* User Stats */}
-      <Stats
-        reputation={reputation}
-        totalQuestions={totalQuestions}
-        totalAnswers={totalAnswers}
-        badges={badgeCounts}
-      />
+      <Stats badges={badgeCounts} />
       <div className="mt-10 flex gap-10 px-5 sm:px-10">
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="background-light850_dark100 light-border-2 min-h-[42px] border py-2">
