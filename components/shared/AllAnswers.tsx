@@ -52,7 +52,7 @@ const AllAnswers = async ({
       <div className="">
         {result.answers.map((answer) => (
           <div key={answer._id} className="py-5">
-            <div className="mb-8 flex flex-col-reverse justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
+            <div className="mb-8 flex justify-between items-center gap-5 flex-row sm:items-center sm:gap-2">
               <Link
                 href={`/profile/${answer.author.clerkId}`}
                 className="flex flex-1 items-start gap-1 sm:items-center"
