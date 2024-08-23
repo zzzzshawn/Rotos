@@ -29,7 +29,7 @@ const NoResult = (props: Props) => {
       </p>
 
       <Link href={link}>
-        <Button className="paragraph-medium primary-gradient text-light900_dark100 mt-5  min-h-[46px] rounded-lg px-4 py-3 text-light-900 ">
+        <Button className="paragraph-medium primary-gradient text-light900_dark100 mt-5  min-h-[46px] rounded-lg px-4 py-3 ">
           {linkTitle}
         </Button>
       </Link>
