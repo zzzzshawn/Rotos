@@ -15,21 +15,13 @@ const NoResult = (props : Props) => {
   return (
     <div className="flex-center mt-10 w-full flex-col  ">
       <Image
-        src="/assets/images/light-illustration.png"
+        src="/assets/images/base.png"
         alt="No result"
         width={270}
         height={200}
-        className="block object-contain dark:hidden"
+        className="block object-contain invert dark:invert-0"
       />
-      <Image
-        src="/assets/images/dark-illustration.png"
-        alt="No result"
-        width={270}
-        height={200}
-        className="hidden object-contain dark:flex "
-      />
-
-      <h2 className="h2-bold text-dark200_light900 mt-8">
+      <h2 className="h2-bold text-dark200_light900  text-center mt-8">
         {title}
       </h2>
       <p className=" body-regular text-dark500_light700 my-3.5 max-w-md text-center ">
@@ -37,7 +29,9 @@ const NoResult = (props : Props) => {
       </p>
 
       <Link href={link}>
-        <Button className="paragraph-medium mt-5 min-h-[46px] rounded-lg bg-primary-500 px-4 py-3 text-light-900 hover:bg-primary-500 ">{linkTitle}</Button>
+        <Button className="paragraph-medium mt-5 min-h-[46px] rounded-lg  px-4 py-3 text-light-900 primary-gradient text-light900_dark100 ">
+          {linkTitle}
+        </Button>
       </Link>
     </div>
   );

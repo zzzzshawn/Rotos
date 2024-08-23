@@ -103,7 +103,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           ))
         ) : (
           <NoResult
-            title="There's no question to show"
+            title="Well... idk man no active users exist on here.. "
             description="Be the first to break the silence 🚀"
             link="/ask-question"
             linkTitle="Ask a Question"

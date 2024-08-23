@@ -48,8 +48,8 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
           ))
         ) : (
           <NoResult
-            title="There is no tag quesiton to show"
-            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            title="Ummm.. no questions on this tags yet..."
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion."
             link="/ask-question"
             linkTitle="Ask a Question"
           />

@@ -67,10 +67,10 @@ export default async function Home({ searchParams }: SearchParamsProps) {
           ))
         ) : (
           <NoResult
-            title="There are no saved questions to show."
-            description="Be the first to break the silence, 🚀 Ask a question and kickstart the discussion. Our Query could be the next big thing others learn from. Get invloved! 💡"
-            link="/ask-question"
-            linkTitle="Ask a Question"
+            title="Well... you haven't saved anything yet.."
+            description="💡 When you find a question you want to keep handy, just click the save button, and it'll appear here."
+            link="/"
+            linkTitle="Home"
           />
         )}
       </div>
