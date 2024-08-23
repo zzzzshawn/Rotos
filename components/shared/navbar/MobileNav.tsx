@@ -104,15 +104,15 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
         <SignedIn>
           <SheetClose asChild>
             <Link href={`/profile/${userId}`}>
-              <div className="light-border-2 background-light850_dark100 mt-8 flex w-full items-center justify-start gap-5 rounded-lg border p-2  shadow-lg dark:shadow-lg dark:shadow-zinc-900">
+              <div className="light-border-2 background-light850_dark100 mt-8 flex w-full items-center justify-start gap-5 rounded-lg border p-3  shadow-lg dark:shadow-lg dark:shadow-zinc-900">
                 {/* <SignedIn> is a clerk functionality that checks if user is authenticated, if yes then show content inside <SignedIn>   */}
-                <div className="size-[66px] overflow-hidden rounded-full">
+                <div className="overflow-hidden w-[100px] rounded-full">
                   <Image
                     src={user?.picture}
-                    alt="pfp"
-                    width={66}
                     height={66}
-                    className="size-full rounded-full object-cover"
+                    width={66}
+                    alt={`author`}
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <div className="text-dark100_light900 flex w-full flex-col">
