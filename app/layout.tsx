@@ -21,11 +21,11 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: {
     default: "DevFlow",
-    template: " %s | DevFlow",
+    template: " %s | Rotōs",
   },
   description: "Platform for programmers to post and ask questions.",
   icons: {
-    icon: "/assets/images/site-logo.svg",
+    icon: "/site-logo.svg",
   },
 };
 
