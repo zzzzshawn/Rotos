@@ -161,3 +161,22 @@ code {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 10px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #09090A; /* Color of the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444447; /* Color of the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #43434b; /* Color of the scrollbar thumb on hover */
+}
+

@@ -15,7 +15,7 @@ const ProfileLink = ({ imgUrl, title, href }: ProfileLinkProps) => {
         <Link
           href={href}
           target="_blank"
-          className="paragraph-medium text-blue-500"
+          className="paragraph-medium text-red"
         >
           {title}
         </Link>
