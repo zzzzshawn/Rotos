@@ -96,7 +96,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -115,7 +115,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -135,7 +135,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -155,7 +155,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                 />
               </FormControl>
 
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -175,7 +175,7 @@ const Profile = ({ clerkId, user }: ProfileProps) => {
                 />
               </FormControl>
 
-              <FormMessage />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />

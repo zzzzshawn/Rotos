@@ -195,7 +195,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                   }}
                 />
               </FormControl>
-              <FormDescription className="body-regular text-dark100_light900 mt-2.5">
+              <FormDescription className="body-regular text-dark400_light800 mt-2.5">
                 Include as many details as possible. The more you tell us, the
                 easier it will be for
               </FormDescription>

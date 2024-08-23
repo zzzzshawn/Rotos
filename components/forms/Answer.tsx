@@ -85,12 +85,12 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       //  toast notification
       return toast({
-        icon: <Check className="text-green"/>,
+        icon: <Check className="text-green" />,
         title: `${aiAnswer.reply && "Ai answer generated"}`,
       });
     } catch (error: any) {
       return toast({
-        icon: <X className="text-red"/>,
+        icon: <X className="text-red" />,
         title: "Internal error. Try again",
       });
     } finally {
@@ -100,7 +100,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
   return (
     <div className="">
-      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
+      <div className="flex flex-row items-center justify-between gap-5 sm:items-center sm:gap-2">
         <h4 className="paragraph-semibold text-dark400_light800">
           Your answer
         </h4>
