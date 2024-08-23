@@ -60,13 +60,15 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
               />
             </SignedIn>
           ) : (
-            <Image
-              src={user?.picture}
-              alt="profile"
-              width={140}
-              height={140}
-              className="rounded-full object-cover"
-            />
+            <div className="overflow-hidden w-[140px] h-[140px] rounded-full">
+              <Image
+                src={user?.picture}
+                alt="profile"
+                width={140}
+                height={140}
+                className="object-cover w-full h-full"
+              />
+            </div>
           )}
         </div>
         <SignedIn>

@@ -16,8 +16,6 @@ export const POST = async (request: Request) => {
     const result = (await model.generateContent(prompt, {})).response.text();
     const parsedResult = JSON.parse(result);
 
-    // console.log(parsedResult, result)
-
 
     return NextResponse.json({reply: parsedResult.content});
   } catch (error: any) {

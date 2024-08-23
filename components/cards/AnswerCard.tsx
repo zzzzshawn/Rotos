@@ -38,15 +38,17 @@ const AnswerCard = ({
       <div className="flex-between mt-6 w-full flex-wrap gap-3 px-4">
         <Link
           href={`/profile/${author.clerkId}`}
-          className="flex items-center gap-2  px-2"
+          className="flex items-center gap-2 px-2"
         >
-          <Image
-            src={author.picture}
-            height={22}
-            width={22}
-            alt={`author`}
-            className={`rounded-full object-contain`}
-          />
+          <div className="overflow-hidden w-[22px] h-[22px] rounded-full">
+            <Image
+              src={author.picture}
+              height={22}
+              width={22}
+              alt={`author`}
+              className="object-cover w-full h-full"
+            />
+          </div>
           <p className="text-dark100_light900">{author.name}</p>
         </Link>
 

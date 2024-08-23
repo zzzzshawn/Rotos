@@ -35,7 +35,6 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
     // gets user from mongodb
   }
 
-
   return (
     <div className="mt-8 px-6 sm:px-12">
       <div className="flex-start w-full flex-col">
@@ -44,17 +43,20 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
             href={`/profile/${result.author.clerkId}`}
             className="flex items-center justify-start gap-1"
           >
-            <Image
-              src={result.author.picture}
-              alt="user pfp"
-              width={22}
-              height={22}
-              className="rounded-full"
-            />
-            <p className="paragraph-semibold text-dark300_light700 ">
+            <div className="overflow-hidden w-[22px] h-[22px] rounded-full">
+              <Image
+                src={result.author.picture}
+                alt="user pfp"
+                width={22}
+                height={22}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <p className="paragraph-semibold text-dark300_light700">
               {result.author.name}
             </p>
           </Link>
+
           <span className="subtle-regular text-dark400_light700 mt-2 line-clamp-1 flex">
             {getTimestamp(result.createdAt)}
           </span>

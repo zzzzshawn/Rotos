@@ -14,7 +14,6 @@ const Navbar = async () => {
   const allTags = await getAllTags({});
 
   const result = await getUserById({ userId });
-  console.log(result);
   const user = {
     name: result?.name,
     username: result?.username,

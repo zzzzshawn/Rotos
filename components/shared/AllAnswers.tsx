@@ -57,13 +57,15 @@ const AllAnswers = async ({
                 href={`/profile/${answer.author.clerkId}`}
                 className="flex flex-1 items-start gap-1 sm:items-center"
               >
-                <Image
-                  src={answer.author.picture}
-                  alt="pfp"
-                  width={18}
-                  height={18}
-                  className="rounded-full object-cover max-sm:mt-0.5"
-                />
+                <div className="overflow-hidden w-[18px] h-[18px] rounded-full">
+                  <Image
+                    src={answer.author.picture}
+                    alt="pfp"
+                    width={18}
+                    height={18}
+                    className="rounded-full object-cover max-sm:mt-0.5"
+                  />
+                </div>
                 <div className="flex flex-col sm:flex-row sm:items-center">
                   <p className="body-semibold text-dark300_light700">
                     {answer.author.name}

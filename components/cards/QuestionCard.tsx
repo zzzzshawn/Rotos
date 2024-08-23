@@ -57,17 +57,20 @@ const QuestionCard = async (props: QuestionProps) => {
         <div className="flex-between w-full">
           <Link
             href={`/profile/${author.clerkId}`}
-            className="flex items-center gap-2  px-2"
+            className="flex items-center gap-2 px-2"
           >
-            <Image
-              src={author.picture}
-              height={22}
-              width={22}
-              alt={`author`}
-              className={`rounded-full object-contain`}
-            />
+            <div className="overflow-hidden w-[22px] h-[22px] rounded-full">
+              <Image
+                src={author.picture}
+                height={22}
+                width={22}
+                alt={`author`}
+                className="object-cover w-full h-full"
+              />
+            </div>
             <p className="text-dark100_light900">{author.name}</p>
           </Link>
+
           <span className="subtle-regular text-dark400_light700 mt-2 line-clamp-1 flex">
             {getTimestamp(createdAt)}
           </span>
