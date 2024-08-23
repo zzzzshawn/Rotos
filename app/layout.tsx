@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     template: " %s | Rotōs",
   },
   description: "Platform for programmers to post and ask questions.",
-  icons: {
-    icon: "/assets/images/site-logo.svg",
-  },
+  icons:{
+    icon: "/favicon.svg"
+  }
 };
 
 export default function RootLayout({
