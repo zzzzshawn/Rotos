@@ -39,7 +39,7 @@ const Stats = ({
 }: StatsProps) => {
   return (
     <div className="mt-7 px-5 sm:px-10">
-      <div className="mt-5 grid grid-cols-2 gap-5 xs:grid-cols-2 md:grid-cols-3">
+      <div className="mt-5 grid grid-cols-2 gap-4 max-sm:gap-2 xs:grid-cols-2 md:grid-cols-3">
         <div className="light-border-2 background-light900_dark300 flex flex-wrap items-center justify-evenly gap-4 rounded-md border p-6 md:row-start-1 md:row-end-3">
           <div className="flex flex-col items-center justify-center gap-3">
             <p className="paragraph-semibold text-dark200_light900 ">

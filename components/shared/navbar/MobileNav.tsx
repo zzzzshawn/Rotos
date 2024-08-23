@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { SignedIn, SignedOut, useAuth } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignOutButton, useAuth } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { mobileSidebarLinks } from "@/constants";
 import { usePathname } from "next/navigation";
@@ -106,16 +106,16 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
             <Link href={`/profile/${userId}`}>
               <div className="light-border-2 background-light850_dark100 mt-8 flex w-full items-center justify-start gap-5 rounded-lg border p-3  shadow-lg dark:shadow-lg dark:shadow-zinc-900">
                 {/* <SignedIn> is a clerk functionality that checks if user is authenticated, if yes then show content inside <SignedIn>   */}
-                <div className="overflow-hidden w-[100px] rounded-full">
+                <div className="size-[66px] overflow-hidden rounded-full ">
                   <Image
                     src={user?.picture}
                     height={66}
                     width={66}
                     alt={`author`}
-                    className="object-cover w-full h-full"
+                    className="size-full object-cover"
                   />
                 </div>
-                <div className="text-dark100_light900 flex w-full flex-col">
+                <div className="text-dark100_light900 flex flex-col">
                   <p className="base-bold">{user?.name}</p>
                   <p className="dark:text-zinc-600">@{user?.username}</p>
                 </div>
@@ -124,32 +124,49 @@ const MobileNav = ({ user, popularTags }: UserParams) => {
           </SheetClose>
         </SignedIn>
 
-        <div className="flex h-full flex-col justify-start gap-8 pb-10 ">
-          <SheetClose asChild className="">
-            {/* nav links */}
-            <NavContent />
-          </SheetClose>
+        <div className="flex  flex-col justify-between gap-8 pb-10 ">
+          <div className="">
+            <SheetClose asChild className="">
+              {/* nav links */}
+              <NavContent />
+            </SheetClose>
+
+            <SignedIn>
+              {tags && (
+                <div className=" light-border border-t pt-5">
+                  <h2 className="text-dark300_light900 base-bold">Tags</h2>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {tags?.map((tag: any) => (
+                      <SheetClose asChild key={tag._id}>
+                        <Link
+                          href={`/tags/${tag._id}`}
+                          className="flex justify-between gap-2"
+                        >
+                          <Badge className="subtle-medium text-dark100_light900 rounded-md border border-light-3 bg-transparent  px-4 py-2 uppercase  dark:border-dark-4">
+                            {tag.name}
+                          </Badge>
+                        </Link>
+                      </SheetClose>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </SignedIn>
+          </div>
 
           <SignedIn>
-            {tags && (
-              <div className=" light-border border-t pt-5">
-                <h2 className="text-dark300_light900 base-bold">Tags</h2>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {tags?.map((tag: any) => (
-                    <SheetClose asChild key={tag._id}>
-                      <Link
-                        href={`/tags/${tag._id}`}
-                        className="flex justify-between gap-2"
-                      >
-                        <Badge className="subtle-medium text-dark100_light900 rounded-md border border-light-3 bg-transparent  px-4 py-2 uppercase  dark:border-dark-4">
-                          {tag.name}
-                        </Badge>
-                      </Link>
-                    </SheetClose>
-                  ))}
-                </div>
-              </div>
-            )}
+            <SignOutButton>
+              <Button className="small-medium primary-gradient flex min-h-[41px] w-full items-center justify-center gap-2 rounded-lg px-4 py-3 shadow-none ">
+                <Image
+                  src="/assets/icons/logout.svg"
+                  alt="login"
+                  width={26}
+                  height={26}
+                  className="invert dark:invert-0 lg:hidden "
+                />
+                <span className="text-light-1 dark:text-dark-1 ">Sign-out</span>
+              </Button>
+            </SignOutButton>
           </SignedIn>
 
           <SignedOut>

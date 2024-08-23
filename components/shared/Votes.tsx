@@ -43,7 +43,8 @@ const Votes = ({
   const { toast } = useToast();
   const pathname = usePathname();
 
-  const totalVotes = -formatAndDivideNumber(downvotes - upvotes);
+  const totalVotes = +formatAndDivideNumber(upvotes - downvotes);
+  const allVotes = +formatAndDivideNumber(upvotes + downvotes)
 
   const handleSave = async () => {
     if (userId) {
@@ -169,7 +170,7 @@ const Votes = ({
             <Metric
               imgUrl="/assets/icons/like.svg"
               alt="upvotes"
-              value={formatAndDivideNumber(totalVotes)}
+              value={formatAndDivideNumber(allVotes)}
               title=""
               textStyles=" small-medium text-dark400_light800  "
             />

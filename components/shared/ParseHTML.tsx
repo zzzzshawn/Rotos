@@ -16,6 +16,7 @@ import "prismjs/components/prism-json";
 import "prismjs/components/prism-dart";
 import "prismjs/components/prism-ruby";
 import "prismjs/components/prism-rust";
+import "prismjs/components/prism-python";
 import "prismjs/components/prism-r";
 import "prismjs/components/prism-kotlin";
 import "prismjs/components/prism-go";

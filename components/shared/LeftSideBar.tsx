@@ -1,8 +1,8 @@
 "use client";
 import { sidebarLinks } from "@/constants";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   SignedIn,
@@ -16,12 +16,39 @@ import { Button } from "../ui/button";
 
 const LeftSideBar = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const { userId } = useAuth();
+  const [links, setLinks] = useState(sidebarLinks);
+
+  useEffect(() => {
+    if (userId) {
+      setLinks((prevLinks) =>
+        prevLinks.map((link) =>
+          link.route === "/profile"
+            ? { ...link, route: `${link.route}/${userId}` }
+            : link
+        )
+      );
+    } else {
+      setLinks((prevLinks) =>
+        prevLinks.map((link) =>
+          link.route.includes("/profile")
+            ? { ...link, route: "/profile" }
+            : link
+        )
+      );
+
+      // Redirect to home if on the profile page and userId is null
+      if (pathname.includes("/profile")) {
+        router.push("/"); // Redirect to home
+      }
+    }
+  }, [userId, pathname, router]);
 
   return (
     <section className=" background-light850_dark100 light-border sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-x p-6 pt-36 max-sm:hidden lg:w-[280px]  ">
       <div className="flex flex-1 flex-col gap-4">
-        {sidebarLinks.map((item) => {
+        {links.map((item) => {
           // takes array from sideBarLinks and creats a Link for each object in array for the sidebar
 
           const isActive =
@@ -83,7 +110,7 @@ const LeftSideBar = () => {
       <SignedOut>
         {/* if user is not logged in the content inside this will show */}
         <div className="flex flex-col gap-3">
-          <SignInButton mode="modal" >
+          <SignInButton mode="modal">
             <Button className="small-medium primary-gradient min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none ">
               <Image
                 src="/assets/icons/account.svg"

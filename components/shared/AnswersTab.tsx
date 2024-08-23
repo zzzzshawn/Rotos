@@ -30,6 +30,7 @@ const AnswersTab = async ({
           question={answer.question}
           author={answer.author}
           upvotes={answer.upvotes.length}
+          downvotes={answer.downvotes.length}
           createdAt={answer.createdAt}
         />
       ))}

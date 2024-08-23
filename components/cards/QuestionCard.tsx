@@ -96,29 +96,6 @@ const QuestionCard = async (props: QuestionProps) => {
             <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
           ))}
         </div>
-        {/* <div className="flex w-max  items-center justify-center gap-2 max-sm:justify-start">
-          <Metric
-            imgUrl="/assets/icons/like.svg"
-            alt="upvotes"
-            value={formatAndDivideNumber(upvotes.length)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-          <Metric
-            imgUrl="/assets/icons/message.svg"
-            alt="answers"
-            value={formatAndDivideNumber(answers.length)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-          <Metric
-            imgUrl="/assets/icons/eye.svg"
-            alt="eye"
-            value={formatAndDivideNumber(views)}
-            title=""
-            textStyles=" small-medium text-dark400_light800  "
-          />
-        </div> */}
         <Votes
           type="Question"
           itemId={JSON.stringify(_id)}
