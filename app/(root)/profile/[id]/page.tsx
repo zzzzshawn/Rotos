@@ -120,16 +120,16 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
           </div>
         </div>
       </div>
-      <div className="light-border-2 text-dark100_light900 mx-5 mt-2 flex w-full flex-col items-start justify-center border-t px-4 pt-5  sm:mx-10">
+      <div className="light-border-2 text-dark100_light900 mx-auto mt-2 flex w-[90%] flex-col items-start justify-center border-t px-4 pt-5  ">
         <p className="">Total questions: {totalQuestions}</p>
         <p className="">Total answers: {totalAnswers}</p>
       </div>
       {/* User Stats */}
       <Stats badges={badgeCounts} />
-      <div className="mt-10 flex gap-10 px-5 sm:px-10">
+      <div className="mt-10 flex gap-10 px-3 sm:px-10">
         <Tabs defaultValue="top-posts" className="flex-1">
-          <TabsList className="background-light850_dark100 light-border-2 min-h-[42px] border py-2">
-            <TabsTrigger className="tab" value="top-posts">
+          <TabsList className="background-light850_dark100 light-border-2 min-h-[42px] border py-2 mx-2">
+            <TabsTrigger className="tab " value="top-posts">
               Top Posts
             </TabsTrigger>
             <TabsTrigger className="tab" value="answers">

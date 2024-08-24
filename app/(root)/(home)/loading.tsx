@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const Loading = () => {
   return (
-    <div className="px-6 sm:px-12 ">
+    <div className="px-2 sm:px-12 ">
       <div className="light-border-2 mt-2 flex w-full items-center justify-between gap-5  border-b py-3 sm:items-center">
         <Skeleton className="h-9 w-20" />
         <Skeleton className="h-9 w-28" />

@@ -43,13 +43,13 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
             href={`/profile/${result.author.clerkId}`}
             className="flex items-center justify-start gap-1"
           >
-            <div className="overflow-hidden w-[22px] h-[22px] rounded-full">
+            <div className="size-[22px] overflow-hidden rounded-full">
               <Image
                 src={result.author.picture}
                 alt="user pfp"
                 width={22}
                 height={22}
-                className="object-cover w-full h-full"
+                className="size-full object-cover"
               />
             </div>
             <p className="paragraph-semibold text-dark300_light700">
@@ -67,7 +67,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
       </div>
 
       <ParseHTML data={result.content} />
-      <div className="flex-between light-border-2 w-full border-b pb-3">
+      <div className="md:flex-between mt-6 flex w-full flex-col items-start gap-2 md:flex-row">
         <div className="flex w-2/3  flex-wrap gap-2">
           {result.tags.map((tag: any) => (
             <RenderTag
@@ -78,7 +78,7 @@ const page = async ({ params, searchParams }: QuestionDetailsProps) => {
             />
           ))}
         </div>
-        <div className="flex w-max  items-center gap-3 max-sm:justify-start">
+        <div className="flex w-full items-center gap-3 max-sm:justify-start">
           <Votes
             type="Question"
             itemId={JSON.stringify(result._id)}

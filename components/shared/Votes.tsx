@@ -44,7 +44,7 @@ const Votes = ({
   const pathname = usePathname();
 
   const totalVotes = +formatAndDivideNumber(upvotes - downvotes);
-  const allVotes = +formatAndDivideNumber(upvotes + downvotes)
+  const allVotes = +formatAndDivideNumber(upvotes + downvotes);
 
   const handleSave = async () => {
     if (userId) {
@@ -55,15 +55,17 @@ const Votes = ({
       });
 
       return toast({
-        icon: !hasSaved ? <Check className="text-green"/> : <X className="text-red"/>,
-        title: `${
-          !hasSaved ? "Saved" : "Unsaved"
-        }`,
+        icon: !hasSaved ? (
+          <Check className="text-green" />
+        ) : (
+          <X className="text-red" />
+        ),
+        title: `${!hasSaved ? "Saved" : "Unsaved"}`,
       });
     }
 
     return toast({
-      icon: <X className="text-red"/>,
+      icon: <X className="text-red" />,
       title: "Login to save",
     });
   };
@@ -71,7 +73,7 @@ const Votes = ({
   const handleVote = async (action: string) => {
     if (!userId) {
       return toast({
-        icon: <X className="text-red"/>,
+        icon: <X className="text-red" />,
         title: "Login to vote",
       });
     }
@@ -96,7 +98,11 @@ const Votes = ({
       }
 
       return toast({
-        icon: !hasupVoted ? <Check className="text-green"/> : <X className="text-red"/>,
+        icon: !hasupVoted ? (
+          <Check className="text-green" />
+        ) : (
+          <X className="text-red" />
+        ),
         title: ` ${!hasupVoted ? "Upvoted" : "Vote removed"}`,
       });
     }
@@ -122,16 +128,19 @@ const Votes = ({
 
       // show a toast
       return toast({
-        icon: !hasdownVoted ? <Check className="text-green"/> : <X className="text-red"/>,
+        icon: !hasdownVoted ? (
+          <Check className="text-green" />
+        ) : (
+          <X className="text-red" />
+        ),
         title: `${!hasdownVoted ? "Downvoted" : "Vote removed"}`,
       });
     }
   };
 
-
   return (
-    <div className="flex gap-5">
-      <div className="flex gap-1.5 md:gap-2.5">
+    <div className="flex w-full gap-5">
+      <div className="flex w-full gap-2.5 md:gap-2">
         <div className="flex-center light-border-2 gap-1 rounded-md border p-1 px-2 md:px-3">
           <Image
             src={
@@ -166,7 +175,7 @@ const Votes = ({
           />
         </div>
         {!isAnswer && (
-          <div className="flex w-max  items-center gap-1.5 max-sm:justify-start md:gap-2.5">
+          <div className="flex w-max  items-center gap-2.5 max-sm:justify-start md:gap-2">
             <Metric
               imgUrl="/assets/icons/like.svg"
               alt="upvotes"
