@@ -15,7 +15,7 @@ import Pagination from "@/components/shared/Pagination";
 
 export const metadata: Metadata = {
   title: "Collections",
-  description: "Collections page of Dev Overflow",
+  description: "Collections page",
 };
 
 export default async function Home({ searchParams }: SearchParamsProps) {

@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Profile",
-  description: "Profile page of Dev Overflow",
+  description: "Profile page",
 };
 
 const ProfileDetails = async ({ params, searchParams }: URLProps) => {

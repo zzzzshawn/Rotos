@@ -7,7 +7,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "Ask-question",
-  description: "Ask quesiton page of Dev Overflow",
+  description: "Ask quesiton page",
 };
 
 const Page = async () => {

@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Edit profile",
-  description: "Edit profile page of Dev Overflow",
+  description: "Edit profile page",
 };
 
 const ProfileEdit = async ({ params }: ParamsProps) => {

@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Community",
-  description: "Community page of Dev Overflow",
+  description: "Community page",
 };
 
 const Community = async ({ searchParams }: SearchParamsProps) => {

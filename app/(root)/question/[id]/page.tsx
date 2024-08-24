@@ -16,7 +16,7 @@ import Viewed from "@/components/shared/Viewed";
 
 export const metadata: Metadata = {
   title: "Question details",
-  description: "Question page of Dev Overflow",
+  description: "Question page ",
 };
 
 interface QuestionDetailsProps {
