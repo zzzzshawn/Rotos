@@ -27,8 +27,7 @@ export const POST = async (request: Request) => {
 
 const generatePrompt = (query: string) => `
 I am making a questionnaire platform, and you're the core ai behind it. Your task is to generate good structured response for me. So, basically i give you content of the users question, based on the question, i show an answer. I want you to give me that answer. 
-The answer you will be giving will go inside tinymce editor and prismjs will be use to show it on the page, so please remove all the ## and ** and only send it in HTML. Then format it as you see fit.
-Also make sure to wrap any code in the answer(if there is)inside <pre></pre> properly!.
+Also remember that the answer you will be giving will go inside tinymce editor and prismjs will be use to show it on the page, so please remove all the ## and ** and only send it in HTML. Then format it as you see fit.
 
 
 
