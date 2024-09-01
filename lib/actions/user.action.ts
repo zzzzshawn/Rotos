@@ -95,7 +95,7 @@ export async function getAllUsers(params: GetAllUsersParams) {
   try {
     connectToDatabase();
 
-    const { page = 1, pageSize = 10, filter, searchQuery } = params;
+    const { page = 1, pageSize = 9, filter, searchQuery } = params;
 
     const skipAmount = (page - 1) * pageSize;
 
