@@ -248,8 +248,7 @@ const Question = ({ type, mongoUserId, questionData }: Props) => {
                 </>
               </FormControl>
               <FormDescription className="body-regular text-dark100_light900 mt-2.5">
-                Add tags to help others find your question. Use commas to
-                separate tags.
+                Add tags to help others find your question. Press Enter atfer typing each tag.
               </FormDescription>
               <FormMessage className="text-red-500" />
             </FormItem>
