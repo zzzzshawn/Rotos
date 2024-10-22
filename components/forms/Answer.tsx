@@ -76,8 +76,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
 
       const aiAnswer = await response.json();
 
-      // convert plaintext to html
-      // const formatedAnswer = aiAnswer.reply.replace(/\n/g, "<br />");
+
       if (editorRef.current) {
         const editor = editorRef.current as any;
         editor.setContent(aiAnswer.reply);

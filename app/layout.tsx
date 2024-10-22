@@ -40,7 +40,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} background-light850_dark100 `}
       >
-          {/* imported clerk for authentication */}
           <Themeprovider>{children}</Themeprovider>
       </body>
     </html>
